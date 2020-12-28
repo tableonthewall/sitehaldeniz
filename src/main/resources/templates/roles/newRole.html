@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/adminlayout :: layout (~{::body},'roles/newRole')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Yeni Kullanıcı</title>
+
+</head>
+<body>
+
+<div id="page-content-wrapper">
+    <div class="card bg-light mb-3">
+        <div class="card-header">
+            <div class="row" style="margin-top:1em;">
+                <div class="col-md-12">
+                    <h1 class="card-title">Yeni Rol</h1>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-md-offset-3">
+                    <!--/*@thymesVar id="ingredient" type="guru.springframework.commands.IngredientCommand"*/-->
+                    <form  th:object="${role}" th:action="@{'/admin/roles/new'}" method="post" id="myform">
+                        <input type="hidden" th:field="*{users}"/>
+                        <div class="col-md-6 form-group">
+                            <label>Rol Adı</label>
+                            <input type="text" class="form-control" th:field="*{name}"/>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="submit-code">Kaydet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->
+
+
+</body>
+</html>

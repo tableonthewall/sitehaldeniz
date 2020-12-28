@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'products')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Deniz Hal Otomasyon</title>
+</head>
+<body>
+<main id="main">
+    <section id="kurumsal">
+        <div class="container" style="padding-top:4em;">
+            <h2>Deniz Hal Otomasyon Yazılımı</h2>
+
+        </div>
+
+        <div class="row about-container">
+
+            <div class="col-lg-6 content order-lg-1 order-2">
+                <p>
+                    Sektörün ihtiyaçlarına yönelik sunduğumuz çözümlerle, gerek kurumsal gerek özel işbirliği sağlayarak, sektörel gelişimi arttırıyoruz.
+                </p>
+
+                <div class="icon-box wow fadeInUp">
+                    <div class="icon"><i class="fa fa-briefcase"></i></div>
+                    <h4 class="title"><a href="">İşlevsel Ticari Modüller</a></h4>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Stok</li>
+                        <li class="list-group-item">Cari</li>
+                        <li class="list-group-item">Fatura</li>
+                        <li class="list-group-item">Kasa</li>
+                        <li class="list-group-item">Pos</li>
+                        <li class="list-group-item">Çek/Senet</li>
+                        <li class="list-group-item">e-Fatura</li>
+                        <li class="list-group-item">Muhasebe</li>
+                    </ul>
+                </div>
+
+                <div class="icon-box wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="icon"><i class="fa fa-edit"></i></div>
+                    <h4 class="title"><a href="">Hal Kayıt Sistemi - HKS</a></h4>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Hal kayıt sistemi ile tam uyumlu</li>
+                        <li class="list-group-item">Alış ve satış künyelerini sistemden kolaylıkla alır</li>
+                    </ul>
+                </div>
+
+                <div class="icon-box wow fadeInUp" data-wow-delay="0.4s">
+                    <div class="icon"><i class="fa fa-phone-square"></i></div>
+                    <h4 class="title"><a href="">Satış ve Destek</a></h4>
+                    <p class="description">Satış, kurulum ve satış sonrası 24 saate destek sunmaya devam ediyoruz.</p>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6 background order-lg-2 order-1 wow fadeInUp">
+                <img th:src="@{/images/newlogo.png}" class="img-fluid" alt="">
+                <div class="row justify-content-around" style="margin-top:2em; margin-left:2em;">
+                    <div class="col-4 offset-md-2">
+                        <a href="#" th:href="@{'/download/demo'}" class="btn btn-primary btn-lg " role="button" aria-pressed="true">Demo İndir</a>
+
+                    </div>
+                    <div class="col-6">
+                        <a href="#" th:href="@{'/propose'}" class="btn btn-success btn-lg " role="button" aria-pressed="true">Teklif Al</a>
+
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+        <!-- Ürün hakkında bilgi edinmek ya da sipariş
+        <div class="row about-extra">
+            <div class="col-lg-6 wow fadeInUp order-1 order-lg-2">
+                <img th:src="@{/images/logo5.png}" class="img-fluid" alt="">
+            </div>
+
+            <div class="col-lg-6 wow fadeInUp pt-4 pt-lg-0 order-2 order-lg-1">
+                <h4>E-İşlemler</h4>
+                <p>
+                    e-Fatura, e-Arşiv , e-Müstahsil, e-Defter, e-Makbuz işlemlerini hızlı ve güvenli gerçekleştirmenizi sağlar.
+                </p>
+                <p>
+                    Voluptas saepe natus quidem blanditiis. Non sunt impedit voluptas mollitia beatae. Qui esse molestias. Laudantium libero nisi vitae debitis. Dolorem cupiditate est perferendis iusto.
+                </p>
+                <p>
+                    Eum quia in. Magni quas ipsum a. Quis ex voluptatem inventore sint quia modi. Numquam est aut fuga mollitia exercitationem nam accusantium provident quia.
+                </p>
+            </div>
+
+        </div>
+        -->
+    </section>
+</main>
+
+
+
+</body>
+</html>

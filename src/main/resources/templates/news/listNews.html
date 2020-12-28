@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/adminlayout :: layout (~{::body},'news/listNews')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Yönetici</title>
+
+</head>
+<body>
+
+<!--==========================
+     About Us Section
+   ============================-->
+
+
+
+<div id="page-content-wrapper">
+    <div class="card bg-light mb-3">
+        <div class="card-header">
+            <div class="row" style="margin-top:1em;">
+                <div class="col-md-10">
+                    <h1 class="card-title">Haberler</h1>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary" href="#" th:href="@{'/news/new'}" role="button">Yeni Haber</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover ">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>ID</th>
+                        <th>Başlık</th>
+                        <th>İçerik</th>
+                        <th>Fotoğraf</th>
+                        <th>Kayıt Tarihi</th>
+                        <th>Haber Sahibi</th>
+                        <th>Detay</th>
+                        <th>Güncelle</th>
+                        <th>Sil</th>
+                    </tr>
+                    </thead>
+                    <tr th:each="haber : ${news}">
+                        <td th:text="${haber.id}">334</td>
+                        <td th:text="${haber.title}">334</td>
+                        <td th:text="${haber.details}">334</td>
+                        <td th:text="${haber.foto_url}">334</td>
+                        <td th:text="${haber.savedate}">334</td>
+                        <td th:text="${haber.user.firstname}">334</td>
+                        <td><a href="#" th:href="@{'/news/' + ${haber.id} + '/show'}">Detay</a></td>
+                        <td><a href="#" th:href="@{'/news/' + ${haber.id} + '/update'}">Güncelle</a></td>
+                        <td><a href="#" th:href="@{'/news/' + ${haber.id} + '/delete'}">Sil</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->
+
+</body>
+</html>

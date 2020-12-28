@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/adminlayout :: layout (~{::body},'admin')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Yönetici</title>
+
+</head>
+<body>
+
+<div id="page-content-wrapper">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+               aria-selected="true">Kurumsal</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+               aria-selected="false">İletişim</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#kullanicilar" role="tab" aria-controls="contact"
+               aria-selected="false">Kullanıcılar</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="card bg-light mb-3">
+                    <div class="card-header">
+                        <div class="row" style="margin-top:1em;">
+                            <div class="col-md-10">
+                                <h1 class="card-title">Kurumsal Bilgiler</h1>
+                            </div>
+                            <div class="col-md-2">
+                                <a class="btn btn-primary" href="#" th:href="@{'/admin/'+${kurumsal.id}+'/update'}" role="button">Bilgileri Güncelle</a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Başlık-1</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary" th:text="${kurumsal.title}">
+                                Kenneth Valdez
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">İçerik-1</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary" th:text="${kurumsal.details}">
+                                Kenneth Valdez
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Fotoğraf-1</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <img style="width:50%;" class="img-responsive" th:src="${kurumsal.foto_url_1}"/>
+                            </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Başlık-2</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary" th:text="${kurumsal.title2}">
+                                Kenneth Valdez
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">İçerik-2</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary" th:text="${kurumsal.details2}">
+                                Kenneth Valdez
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Fotoğraf-2</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <img style="width:50%;" class="img-responsive" th:src="${kurumsal.foto_url_2}"/>
+                            </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Başlık-3</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary" th:text="${kurumsal.title3}">
+                                Kenneth Valdez
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">İçerik-3</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary" th:text="${kurumsal.details3}">
+                                Kenneth Valdez
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Fotoğraf-3</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                <img style="width:50%;" class="img-responsive" th:src="${kurumsal.foto_url_3}"/>
+                            </div>
+                        </div>
+
+                        <br>
+                        <hr>
+                        <br>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Son Güncelleme Tarihi</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary" th:text="${kurumsal.savedate}">
+                                Kenneth Valdez
+                            </div>
+
+                        </div>
+                </div>
+            <!-- /#page-content-wrapper -->
+        </div>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div class="container-fluid">
+                <h1>İletişim Mesajları </h1>
+                <div class="panel-body">
+
+                    <div class="table-responsive">
+                        <table class="table table-hover ">
+                            <thead class="thead-inverse">
+                            <tr>
+                                <th>ID</th>
+                                <th>Adı ve Soyadı</th>
+                                <th>E-mail Adresi</th>
+                                <th>Başlık</th>
+                                <th>Mesaj</th>
+                                <th>Mesaj Tarihi</th>
+                                <th>Sil</th>
+                            </tr>
+                            </thead>
+                            <tr th:each="contact : ${iletisim}">
+                                <td th:text="${contact.id}">334</td>
+                                <td th:text="${contact.adSoyad}">334</td>
+                                <td th:text="${contact.email}">334</td>
+                                <td th:text="${contact.title}">334</td>
+                                <td th:text="${contact.message}">334</td>
+                                <td th:text="${contact.savedate}">334</td>
+                                <td><a href="#" th:href="@{'/contact/' + ${contact.id} +'/delete'}">Sil</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="kullanicilar" role="tabpanel" aria-labelledby="contact-tab">
+            <div class="container-fluid">
+                <h1> Kullanıcılar </h1>
+                <div class="panel-body">
+
+                    <div class="table-responsive">
+                        <table class="table table-hover ">
+                            <thead class="thead-inverse">
+                            <tr>
+                                <th>ID</th>
+                                <th>Email</th>
+                                <th>Adı</th>
+                                <th>Soyadı</th>
+                                <th>Detay</th>
+                                <th>Güncelle</th>
+                                <th>Sil</th>
+                            </tr>
+                            </thead>
+                            <tr th:each="user : ${users}">
+                                <td th:text="${user.id}">334</td>
+                                <td th:text="${user.email}">334</td>
+                                <td th:text="${user.firstname}">334</td>
+                                <td th:text="${user.lastname}">334</td>
+                                <td><a href="#" th:href="@{'/admin/user/' + ${user.id} + '/show'}">Detay</a></td>
+                                <td><a href="#" th:href="@{'/admin/user/' + ${user.id} +'/update'}">Güncelle</a></td>
+                                <td><a href="#" th:href="@{'/admin/user/' + ${user.id} +'/delete'}">Sil</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</div>
+    <!--==========================
+      About Us Section
+    ============================-->
+
+
+
+
+
+
+                <!-- /#page-content-wrapper -->
+
+
+
+
+
+</body>
+</html>

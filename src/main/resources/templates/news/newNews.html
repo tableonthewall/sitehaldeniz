@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/adminlayout :: layout (~{::body},'news/newNews')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Haber Ekle</title>
+
+</head>
+<body>
+
+<div id="page-content-wrapper">
+    <div class="card bg-light mb-3">
+        <div class="card-header">
+            <div class="row" style="margin-top:1em;">
+                <div class="col-md-12">
+                    <h1 class="card-title">Yeni Haber</h1>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-md-offset-3">
+                    <!--/*@thymesVar id="ingredient" type="guru.springframework.commands.IngredientCommand"*/-->
+                    <form  th:object="${news}" th:action="@{'/news/new'}" enctype="multipart/form-data" method="post" id="myform">
+                        <div class="col-md-6 form-group">
+                            <label>Başlık</label>
+                            <input type="text" class="form-control" th:field="*{title}"/>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>İçerik</label>
+                            <textarea rows="20" cols="80" class="support-answer-textarea" th:field="*{details}" id="support-answer-textarea" form="myform"> </textarea>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Tarih</label>
+                            <input type="date" class="form-control"  th:field="*{savedate}"/>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Fotoğraf</label>
+                            <input type="file" name="file" class="form-control"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="submit-code">Kaydet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->
+
+<script>
+    $("#submit-code").click(function() {
+  $("textarea#support-answer-textarea").html($(".support-answer-textarea").val().replace(/\n/g, "<br>"));
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'contact')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Deniz Hal Otomasyon</title>
+</head>
+<body>
+<main id="main">
+    <!--==========================
+     Contact Section
+   ============================-->
+    <section id="contact">
+        <div class="container-fluid"  style="padding-top:4em;">
+
+
+
+            <div class="section-header">
+                <h3>İletişim</h3>
+
+                <div th:if="${param.success}">
+                    <div class="alert alert-info">Mesajınız başarıyla iletilmiştir.</div>
+                </div>
+
+            </div>
+
+
+            <div class="row wow fadeInUp">
+
+                <div class="col-lg-6">
+                    <div class="map mb-4 mb-lg-0">
+                        <img th:src="@{/images/kartvizit.png}" class="img-fluid" alt="">
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-md-5 info">
+                            <i class="ion-ios-location-outline"></i>
+                            <p>İhsan Oğuz İş Merkezi Kat:2, Gazipaşa Antalya</p>
+                        </div>
+                        <div class="col-md-4 info">
+                            <i class="ion-ios-email-outline"></i>
+                            <p>info@example.com</p>
+                        </div>
+                        <div class="col-md-3 info">
+                            <i class="ion-ios-telephone-outline"></i>
+                            <p>0 242 572 55 51</p>
+                        </div>
+                    </div>
+
+                    <div class="form">
+                        <div id="sendmessage">Mesajınız için teşekkürler.</div>
+
+
+                        <form th:action="@{'/contact/new'}" th:object="${iletisim}" method="post" >
+                            <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                                <p>Lütfen Bilgileri Doğru Giriniz</p>
+                            </div>
+                            <input type="hidden" th:field="*{savedate}"/>
+                            <div class="form-row">
+                                <div class="form-group col-lg-6" th:class="${#fields.hasErrors('adSoyad')}
+                                ? 'form-group col-lg-6 has-error' : 'form-group col-lg-6'">
+                                    <input type="text" name="name" th:field="*{adSoyad}" class="form-control" id="name" placeholder="Adınız ve Soyadınız" th:errorclass="has-error"/>
+                                    <span class="help-block" th:if="${#fields.hasErrors('adSoyad')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('adSoyad')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+
+                                </div>
+
+                                <div class="form-group col-lg-6" th:class="${#fields.hasErrors('email')}
+                                ? 'col-lg-6 form-group has-error' : 'col-lg-6 form-group'">
+                                    <input type="email" class="form-control" th:field="*{email}" th:errorclass="has-error" name="email" id="email" placeholder="Email"/>
+                                    <span class="help-block" th:if="${#fields.hasErrors('email')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('email')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group" th:class="${#fields.hasErrors('title')}
+                                ? 'form-group has-error' : 'form-group'">
+                                <input type="text" class="form-control" th:field="*{title}" th:errorclass="has-error" name="subject" id="subject" placeholder="Konu"/>
+                                <span class="help-block" th:if="${#fields.hasErrors('title')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('title')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                            </div>
+                            <div class="form-group" th:class="${#fields.hasErrors('title')}
+                                ? 'form-group has-error' : 'form-group'">
+                                <textarea class="form-control" name="message" th:field="*{message}" th:errorclass="has-error" rows="5"  ></textarea>
+                                <span class="help-block" th:if="${#fields.hasErrors('message')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('message')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                            </div>
+                            <div class="text-center"><button type="submit" title="Send Message">Gönder</button></div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- #contact -->
+</main>
+
+
+
+</body>
+</html>

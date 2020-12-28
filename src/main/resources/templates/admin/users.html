@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/adminlayout :: layout (~{::body},'admin/users')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Yönetici</title>
+
+</head>
+<body>
+
+
+    <!--==========================
+      About Us Section
+    ============================-->
+
+
+
+                <div id="page-content-wrapper">
+                    <div class="card bg-light mb-3">
+                        <div class="card-header">
+                            <div class="row" style="margin-top:1em;">
+                                <div class="col-md-10">
+                                    <h1 class="card-title">Kullanıcılar</h1>
+                                </div>
+                                <div class="col-md-2">
+                                    <a class="btn btn-primary" href="#" th:href="@{'/admin/users/new'}" role="button">Kullanıcı Ekle</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover ">
+                                    <thead class="thead-inverse">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Email</th>
+                                        <th>Adı</th>
+                                        <th>Soyadı</th>
+                                        <th>Detay</th>
+                                        <th>Güncelle</th>
+                                        <th>Sil</th>
+                                    </tr>
+                                    </thead>
+                                    <tr th:each="user : ${users}">
+                                        <td th:text="${user.id}">334</td>
+                                        <td th:text="${user.email}">334</td>
+                                        <td th:text="${user.firstname}">334</td>
+                                        <td th:text="${user.lastname}">334</td>
+                                        <td><a href="#" th:href="@{'/admin/user/' + ${user.id} + '/show'}">Detay</a></td>
+                                        <td><a href="#" th:href="@{'/admin/user/' + ${user.id} +'/update'}">Güncelle</a></td>
+                                        <td><a href="#" th:href="@{'/admin/user/' + ${user.id} +'/delete'}">Sil</a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /#page-content-wrapper -->
+
+
+
+
+
+</body>
+</html>

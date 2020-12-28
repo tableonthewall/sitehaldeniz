@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/adminlayout :: layout (~{::body},'admin/showUser')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Yönetici</title>
+
+</head>
+<body>
+<!--==========================
+      About Us Section
+    ============================-->
+
+
+
+<div id="page-content-wrapper">
+    <div class="card bg-light mb-3">
+        <div class="card-header">
+            <div class="row" style="margin-top:1em;">
+                <div class="col-md-10">
+                    <h1 class="card-title">Kullanıcılar</h1>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary" href="#" th:href="@{'/admin/users/new'}" role="button">Kullanıcı Ekle</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover ">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>ID</th>
+                        <th>Email</th>
+                        <th>Adı</th>
+                        <th>Soyadı</th>
+                        <th>Şifre</th>
+                        <th>Roller</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.firstname}"></td>
+                        <td th:text="${user.lastname}"></td>
+                        <td th:text="${user.password}"></td>
+                        <td>
+                            <table>
+                            <tr>
+                                <td th:each="role: ${user.roles}"
+                                    th:text="${role.name}">
+                                </td>
+                            </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->
+
+</body>
+</html>

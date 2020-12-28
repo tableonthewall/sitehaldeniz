@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/adminlayout :: layout (~{::body},'products/productDetails')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Yönetici</title>
+
+</head>
+<body>
+
+<div id="page-content-wrapper">
+    <div class="card bg-light mb-3">
+        <div class="card-header">
+            <div class="row" style="margin-top:1em;">
+                <div class="col-md-10">
+                    <h1 class="card-title" th:text="${product.name}">Ürün Detay</h1>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary" href="#" th:href="@{'/admin/products/' + ${product.id} + '/update'}" role="button">Güncelle</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover ">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>ID</th>
+                        <th>Ürün Adı</th>
+                        <th>Versiyon</th>
+                        <th>Ekleme Tarihi</th>
+                        <th>Demo Link</th>
+                        <th>Uygulama Link</th>
+                        <th>Teklifler</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${product.id}"></td>
+                        <td th:text="${product.name}"></td>
+                        <td th:text="${product.version}"></td>
+                        <td th:text="${product.savedate}"></td>
+                        <td th:text="${product.demo_link}"></td>
+                        <td th:text="${product.app_link}"></td>
+                        <td >
+                            <a href="#" th:href="@{'/propose/'+${product.id}+'/list'}" th:text="${#lists.size(product.proposes)}">link</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover ">
+                    <thead class="thead-inverse">
+                        <th>ID</th>
+                        <th>Şirket Adı</th>
+                        <th>Adı ve Soyadı</th>
+                        <th>Telefon Numarası</th>
+                        <th>E-Mail</th>
+                        <th>İl/th>
+                        <th>İlçe</th>
+                        <th>Teklif Tarihi</th>
+                    </thead>
+                    <tbody>
+                        <tr th:each="propose : ${product.proposes}">
+                            <td th:text="${propose.id}"></td>
+                            <td th:text="${propose.sirketAdi}"></td>
+                            <td th:text="${propose.adSoyad}"></td>
+                            <td th:text="${propose.tel}"></td>
+                            <td th:text="${propose.email}"></td>
+                            <td th:text="${propose.il}"></td>
+                            <td th:text="${propose.ilce}"></td>
+                            <td th:text="${propose.savedate}"></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->
+
+
+
+</body>
+</html>

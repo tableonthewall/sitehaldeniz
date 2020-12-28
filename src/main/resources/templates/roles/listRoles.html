@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/adminlayout :: layout (~{::body},'roles')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Yönetici</title>
+
+</head>
+<body>
+
+<div id="page-content-wrapper">
+    <div class="card bg-light mb-3">
+        <div class="card-header">
+            <div class="row" style="margin-top:1em;">
+                <div class="col-md-10">
+                    <h1 class="card-title">Roller</h1>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary" href="#" th:href="@{'/admin/roles/new'}" role="button">Rol Ekle</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover ">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>ID</th>
+                        <th>Rol adı</th>
+                        <th>Kullanıcı Sayısı</th>
+                        <th>Detay</th>
+                        <th>Güncelle</th>
+                        <th>Sil</th>
+                    </tr>
+                    </thead>
+                    <tr th:each="role : ${roles}">
+                        <td th:text="${role.id}">334</td>
+                        <td th:text="${role.name}">334</td>
+                        <td th:text="${#lists.size(role.users)}">sayılar</td>
+                        <td><a href="#" th:href="@{'/admin/roles/' + ${role.id} + '/show'}">Detay</a></td>
+                        <td><a href="#" th:href="@{'/admin/roles/' + ${role.id} +'/update'}">Güncelle</a></td>
+                        <td><a href="#" th:href="@{'/admin/roles/' + ${role.id} +'/delete'}">Sil</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->
+
+</body>
+</html>

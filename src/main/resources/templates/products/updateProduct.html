@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/adminlayout :: layout (~{::body},'products/updateProduct')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Yönetici</title>
+
+</head>
+<body>
+
+<div id="page-content-wrapper">
+    <div class="card bg-light mb-3">
+        <div class="card-header">
+            <div class="row" style="margin-top:1em;">
+                <div class="col-md-12">
+                    <h1 class="card-title">Ürün Güncelle</h1>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <!--/*@thymesVar id="ingredient" type="guru.springframework.commands.IngredientCommand"*/-->
+                    <form  th:object="${product}" th:action="@{'/admin/products/update'}" enctype="multipart/form-data" method="post" id="myform">
+                        <input type="hidden" th:field="*{id}"/>
+                        <div class="col-md-6 form-group">
+                            <label>Ürün Adı</label>
+                            <input type="text" class="form-control" th:field="*{name}"/>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Versiyon</label>
+                            <input type="text" class="form-control" th:field="*{version}"/>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Tarih</label>
+                            <input type="date" class="form-control"  th:field="*{savedate}"/>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Demo Dosyası</label>
+                            <input type="file" name="demolink" class="form-control"/>
+                            <input type="hidden" th:field="*{demo_link}"/>
+                        </div>
+
+                        <div class="col-md-6 form-group">
+                            <label>Uygulama Dosyası</label>
+                            <input type="file" name="applink" class="form-control"/>
+                            <input type="hidden" th:field="*{app_link}"/>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Güncelle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->
+
+
+
+</body>
+</html>

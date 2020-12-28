@@ -1,0 +1,190 @@
+<!doctype html>
+<html th:fragment="layout (template, menu)">
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.png}">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+    <title>Deniz Hal Otomasyon</title>
+    <meta content="Hal Otomasyon Programları" name="keywords">
+    <meta content="Dijital Dönüşüm" name="description">
+    <title>Deniz Hal</title>
+
+    <!-- Bootstrap CSS File -->
+    <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <!-- Libraries CSS Files -->
+    <link th:href="@{/lib/font-awesome/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/lib/animate/animate.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/lib/ionicons/css/ionicons.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/lib/lightbox/css/lightbox.min.css}" rel="stylesheet" type="text/css"/>
+
+    <!-- Main Stylesheet File -->
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<!--==========================
+  Header
+  ============================-->
+<header id="header" class="fixed-top">
+    <div class="container">
+
+        <div class="logo float-left">
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <h1 class="text-light"><a href="#header"><span>NewBiz</span></a></h1> -->
+            <a href="#intro" class="scrollto"><img th:src="@{/images/logo2.png}" alt="" class="img-fluid"></a>
+        </div>
+
+        <nav class="main-nav float-right d-none d-lg-block">
+            <ul>
+                <li th:fragment="menuItem (path,active,title,text)" class="active" th:class="${active==menu ? 'active' : ''}">
+                    <a th:href="@{__${path}__}" th:title="${title}">
+                        <span th:text="${text}">Template</span>
+                    </a>
+                </li>
+                <li th:replace="::menuItem ('/','home','Anasayfa','Anasayfa')">
+                    <span>Anasayfa</span>
+                </li>
+                <li th:replace="::menuItem ('/#kurumsal','kurumsal','Kurumsal','Kurumsal')">
+                    <span>Kurumsal</span>
+                </li>
+                <li th:replace="::menuItem ('/products','products','Ürünlerimiz','Ürünlerimiz')">
+                    <span>Kurumsal</span>
+                </li>
+                <li th:replace="::menuItem ('/propose','propose','Satış ve Destek','Satış ve Destek')">
+                    <span>Kurumsal</span>
+                </li>
+                <li th:replace="::menuItem ('/haberler','haberler','Haberler','Haberler')">
+                    <span>Kurumsal</span>
+                </li>
+                <li th:replace="::menuItem ('/iletisim','iletisim','İrtibat','İrtibat')">
+                    <span>İrtibat</span>
+                </li>
+
+                <li sec:authorize="isAnonymous()" th:replace="::menuItem ('/login','login','Giriş','Giriş')">
+                    <span>Login</span>
+                </li>
+                <!--
+                <li sec:authorize="isAuthenticated()" th:replace="::menuItem ('/logout','logout','Çıkış','Çıkış')">
+                    <span>Logout</span>
+                </li>
+                <li sec:authorize="isAuthenticated()" sec:authentication="principal.username" th:replace="::menuItem ('/admin','admin','Admin','Admin Sayfası')">
+                    <span>Admin Sayfası</span>
+                </li>
+                -->
+                <li sec:authorize="isAuthenticated()" class="drop-down"><a href="#" sec:authentication="principal.username"></a>
+                  <ul>
+
+                      <li sec:authorize="hasRole('ROLE_ADMIN')" th:replace="::menuItem ('/admin','admin','Admin','Admin Sayfası')"><a href="#">Drop Down 3</a></li>
+                      <li sec:authorize="hasRole('ROLE_USER')" th:replace="::menuItem ('/user','user','User','Kullanıcı Paneli')"><a href="#">Drop Down 3</a></li>
+                    <li sec:authorize="isAuthenticated()" th:replace="::menuItem ('/logout','logout','Çıkış','Çıkış')"><a href="#">Drop Down 4</a></li>
+                  </ul>
+                </li>
+            </ul>
+        </nav><!-- .main-nav -->
+
+    </div>
+</header><!-- #header -->
+
+
+<div class="container xd-container">
+
+    <th:block th:include="${template}"/>
+
+</div>
+
+
+<!--==========================
+  Footer
+============================-->
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6 footer-info">
+                    <h3>Deniz Bilgisayar</h3>
+                    <p>Hal Otomasyon Yazılımı ve sektöre özel çözümler</p>
+                </div>
+
+                <div class="col-lg-2 col-md-6 footer-links">
+                    <h4>Bağlantılar</h4>
+                    <ul>
+                        <li><a href="#" th:href="@{/home}">Anasayfa</a></li>
+                        <li><a href="#" th:href="@{/kurumsal}">Kurumsal</a></li>
+                        <li><a href="#" th:href="@{/products}">Ürünlerimiz</a></li>
+                        <li><a href="#" th:href="@{/propose}">Satış ve Destek</a></li>
+                        <li><a href="#" th:href="@{/haberler}">Haberler</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-contact">
+                    <h4>Adres</h4>
+                    <p>
+                        İhsan Oğuz İş Merkezi Kat:2 <br>
+                        Gazipaşa, 07900<br>
+                        Antalya <br>
+                        <strong>Telefon:</strong> 0 242 572 55 51<br>
+                    </p>
+
+                    <div class="social-links">
+                        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                        <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                        <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                    </div>
+
+                </div>
+                <!--
+                <div class="col-lg-3 col-md-6 footer-newsletter">
+                  <h4></h4>
+                  <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem marada parida nodela caramase seza.</p>
+                  <form action="" method="post">
+                    <input type="email" name="email"><input type="submit"  value="Subscribe">
+                  </form>
+                </div>
+              -->
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong>Seyda Özdemir</strong>.
+        </div>
+    </div>
+</footer><!-- #footer -->
+
+<!-- Uncomment below i you want to use a preloader -->
+<div id="preloader"></div>
+<!-- JavaScript Libraries -->
+<script th:src="@{/lib/jquery/jquery.min.js}"></script>
+<script th:src="@{/lib/jquery/jquery-migrate.min.js}"></script>
+<!--Deprecated
+<script th:src="@{/lib/bootstrap/js/bootstrap.bundle.min.js}"></script>
+-->
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/lib/easing/easing.min.js}"></script>
+<script th:src="@{/lib/mobile-nav/mobile-nav.js}"></script>
+<script th:src="@{/lib/wow/wow.min.js}"></script>
+<script th:src="@{/lib/waypoints/waypoints.min.js}"></script>
+<script th:src="@{/lib/counterup/counterup.min.js}"></script>
+<script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
+<script th:src="@{/lib/isotope/isotope.pkgd.min.js}"></script>
+<script th:src="@{/lib/lightbox/js/lightbox.min.js}"></script>
+<!-- Contact Form JavaScript File -->
+<script th:src="@{/contactform/contactform.js}"></script>
+
+<!-- Template Main Javascript File -->
+<script th:src="@{/js/main.js}"></script>
+
+</body>
+</html>

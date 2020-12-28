@@ -1,0 +1,15 @@
+//Products güncelleme - silme***
+//Propose details güncelleme silme***
+//Demo dosyası için yeni path oluştur ve spring security ayarlarını düzenle***
+//App dosyasının security ayarlarını düzenle***
+//upload limitini önemse***
+//null olabilecek alanları gözden geçirip validation özelliklerini bütün uygulama için ayarla---
+//dosyalar menusünü düzenle**v2.0
+//kullanıcılara ürün sat ve tarih özelliklerini ayarla**v2.0
+//listeleri sıralama ayarlamalarını yap**v2.0
+//teklifler sayfasını ve özelliklerini ayarla....***
+//path ayarlarını linux gözeretek ayarla...**bu deploy'a kaldı
+//dto özellikleri üzerine düşün**v2.0
+//users sayfasını ayarla***
+//irtibat sayfası
+//footer

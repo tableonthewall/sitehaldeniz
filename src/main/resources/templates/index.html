@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'home')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Deniz Hal Otomasyon</title>
+</head>
+<body>
+
+
+<!--==========================
+    Intro Section
+  ============================-->
+
+<section id="intro" class="clearfix">
+    <div class="container">
+
+        <div class="intro-img">
+            <img th:src="@{/images/newlogo.png}" alt="" class="img-fluid">
+        </div>
+
+        <div class="intro-info">
+            <h2>Hal Otomasyonu<br><span>dijital dönüşüm</span><br>e-fatura<br>e-irsaliye</h2>
+            <div>
+                <a href="/products" class="btn-get-started scrollto">Demo İndir</a>
+                <a href="/propose" class="btn-services scrollto">Detaylı Bilgi</a>
+            </div>
+        </div>
+
+    </div>
+</section><!-- #intro -->
+
+
+<main id="main">
+
+    <!--==========================
+      About Us Section
+    ============================-->
+    <section id="kurumsal">
+        <div class="container">
+
+            <header class="section-header">
+                <h3 th:text="${kurumsal.title}">Kurumsal</h3>
+                <p class="lead" style="white-space:pre-wrap;" th:text="${kurumsal.details}">Deniz Bilgisayar bilişim sektöründe 1998'den beri faaliyet göstermektedir.</p>
+            </header>
+
+            <div class="row about-container">
+
+                <div class="col-lg-6 content order-lg-1 order-2">
+                    <p>
+                        Sektörün ihtiyaçlarına yönelik sunduğumuz çözümlerle, gerek kurumsal gerek özel işbirliği sağlayarak, sektörel gelişimi arttırıyoruz.
+                    </p>
+
+                    <div class="icon-box wow fadeInUp">
+                        <div class="icon"><i class="fa fa-shopping-bag"></i></div>
+                        <h4 class="title"><a href="">Hal Otomasyon Yazılımı</a></h4>
+                        <p class="description">e-fatura e-irsaliye hks sistemine entegre, komisyoncunun bütün ihtiyaçlarına çözüm sunuyoruz.</p>
+                    </div>
+
+                    <div class="icon-box wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="icon"><i class="fa fa-window-maximize"></i></div>
+                        <h4 class="title"><a href="">Dijital Çözümler</a></h4>
+                        <p class="description">Sektörel bazda dijital çözümler için bizimle görüşün.</p>
+                    </div>
+
+                    <div class="icon-box wow fadeInUp" data-wow-delay="0.4s">
+                        <div class="icon"><i class="fa fa-bar-chart"></i></div>
+                        <h4 class="title"><a href="">Satış ve Destek</a></h4>
+                        <p class="description">Satış, kurulum ve satış sonrası 24 saate destek sunmaya devam ediyoruz.</p>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6 background order-lg-2 order-1 wow fadeInUp">
+                    <img  th:src="${kurumsal.foto_url_1}" class="img-fluid" alt="">
+                </div>
+            </div>
+
+            <div class="row about-extra">
+                <div class="col-lg-6 wow fadeInUp">
+                    <img th:src="${kurumsal.foto_url_2}" class="img-fluid" alt="">
+                </div>
+
+                <div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0">
+                    <h4 th:text="${kurumsal.title2}">Hal Kayıt Sistemi</h4>
+                    <p class="lead" style="white-space:pre-wrap;" th:text="${kurumsal.details2}">
+                        Sunduğumuz çözümlerle Ticaret Bakanlığı Hal Kayıt Sistemine uygun, ...........
+                    </p>
+                </div>
+            </div>
+
+            <div class="row about-extra">
+                <div class="col-lg-6 wow fadeInUp order-1 order-lg-2">
+                    <img th:src="${kurumsal.foto_url_3}"  class="img-fluid" alt="">
+                </div>
+
+                <div class="col-lg-6 wow fadeInUp pt-4 pt-lg-0 order-2 order-lg-1">
+                    <h4 th:text="${kurumsal.title3}">E-İşlemler</h4>
+                    <p class="lead" style="white-space:pre-wrap;" th:text="${kurumsal.details3}">
+                        e-Fatura, e-Arşiv , e-Müstahsil, e-Defter, e-Makbuz işlemlerini hızlı ve güvenli gerçekleştirmenizi sağlar.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- #about -->
+
+    <!--==========================
+      Services Section
+    ============================-->
+    <section id="services" class="section-bg">
+        <div class="container">
+
+            <header class="section-header">
+                <h3>Entegre Ticari Modüller</h3>
+                <p>Kurumunuzun ihtiaçlarına yönelik cari, stok, fatura, kasa, çek, senet, pos, muhasebe işlemlerini sunan çözümlere sahibiz.</p>
+            </header>
+
+            <div class="row">
+
+                <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
+                    <div class="box">
+                        <div class="icon"><i class="ion-ios-analytics-outline" style="color: #ff689b;"></i></div>
+                        <h4 class="title"><a href="">Gelişmiş Raporlama</a></h4>
+                        <p class="description">Şirketinizin ihtiyacı olan bütün raporları hazırlayabilen rapor modülü.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-duration="1.4s">
+                    <div class="box">
+                        <div class="icon"><i class="ion-ios-bookmarks-outline" style="color: #e9bf06;"></i></div>
+                        <h4 class="title"><a href="">Kullanıcı Dostu Arayüz</a></h4>
+                        <p class="description">Kişiye özel değiştirilebilen arayüz seçenekleri.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+                    <div class="box">
+                        <div class="icon"><i class="ion-ios-paper-outline" style="color: #3fcdc7;"></i></div>
+                        <h4 class="title"><a href="">Her Zaman Güncel</a></h4>
+                        <p class="description">Şirketinizin istekleri ve mevzuatta meydana gelen değişikliklere karşı her zaman güncel. </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+                    <div class="box">
+                        <div class="icon"><i class="ion-ios-speedometer-outline" style="color:#41cf2e;"></i></div>
+                        <h4 class="title"><a href="">Güvenlik ve Denetim</a></h4>
+                        <p class="description">Kullanıcı yetkilendirme ve şifreli modül girişleri.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-delay="0.2s" data-wow-duration="1.4s">
+                    <div class="box">
+                        <div class="icon"><i class="ion-ios-world-outline" style="color: #d6ff22;"></i></div>
+                        <h4 class="title"><a href="">Gelişmiş Teknolojiler</a></h4>
+                        <p class="description">Kurumumuz bünyesinde her türlü çözüme yönelik gelişmiş modern tasarım anlayışı.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-delay="0.2s" data-wow-duration="1.4s">
+                    <div class="box">
+                        <div class="icon"><i class="ion-ios-clock-outline" style="color: #4680ff;"></i></div>
+                        <h4 class="title"><a href="">Pratik Bilgi Analizi</a></h4>
+                        <p class="description">Şirketinizin ihtiyacı olan bütün bilgilere tek tuşla erişme imkanı.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- #services -->
+
+    <!--==========================
+      Why Us Section
+    ============================-->
+    <section id="why-us" class="wow fadeIn">
+        <div class="container">
+            <header class="section-header">
+                <h3>Neden Biz?</h3>
+                <p>Sektörün sürekli geliştiği ve değişiği, dijital dönüşümün şart olduğu bugünlerde.</p>
+            </header>
+
+            <div class="row row-eq-height justify-content-center">
+
+                <div class="col-lg-4 mb-4">
+                    <div class="card wow bounceInUp">
+                        <i class="fa fa-diamond"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Destek</h5>
+                            <p class="card-text">Sorunlarınıza 24 saat süreyle uzaktan ve birebir destek sunuyoruz..</p>
+                            <a href="#" class="readmore">Read more </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 mb-4">
+                    <div class="card wow bounceInUp">
+                        <i class="fa fa-language"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Dijital Dönüşüm</h5>
+                            <p class="card-text">Gelişime ayak uyduruyoruz, dijital dönüşüm çözümleri sunuyoruz.</p>
+                            <a href="#" class="readmore">Read more </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 mb-4">
+                    <div class="card wow bounceInUp">
+                        <i class="fa fa-object-group"></i>
+                        <div class="card-body">
+                            <h5 class="card-title">Esneklik</h5>
+                            <p class="card-text">İhtiyaçlarınıza yönelik kişiselleştirilebilir, esnek çözümler sağlıyoruz. </p>
+                            <a href="#" class="readmore">Read more </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row counters">
+
+                <div class="col-lg-3 col-6 text-center">
+                    <span data-toggle="counter-up">24</span>
+                    <p>Saat Destek</p>
+                </div>
+
+                <div class="col-lg-3 col-6 text-center">
+                    <span data-toggle="counter-up">7</span>
+                    <p>Sektör</p>
+                </div>
+
+                <div class="col-lg-3 col-6 text-center">
+                    <span data-toggle="counter-up">100</span>
+                    <p>Kuruluş</p>
+                </div>
+
+                <div class="col-lg-3 col-6 text-center">
+                    <span data-toggle="counter-up">1000</span>
+                    <p>Bireysel Müşteri</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!--==========================
+      Portfolio Section
+    ============================-->
+
+    <!--
+    <section id="portfolio" class="clearfix">
+      <div class="container">
+
+        <header class="section-header">
+          <h3 class="section-title">Our Portfolio</h3>
+        </header>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">App</li>
+              <li data-filter=".filter-card">Card</li>
+              <li data-filter=".filter-web">Web</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="img/portfolio/app1.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href="#">App 1</a></h4>
+                <p>App</p>
+                <div>
+                  <a href="img/portfolio/app1.jpg" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                  <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web" data-wow-delay="0.1s">
+            <div class="portfolio-wrap">
+              <img src="img/portfolio/web3.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href="#">Web 3</a></h4>
+                <p>Web</p>
+                <div>
+                  <a href="img/portfolio/web3.jpg" class="link-preview" data-lightbox="portfolio" data-title="Web 3" title="Preview"><i class="ion ion-eye"></i></a>
+                  <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app" data-wow-delay="0.2s">
+            <div class="portfolio-wrap">
+              <img src="img/portfolio/app2.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href="#">App 2</a></h4>
+                <p>App</p>
+                <div>
+                  <a href="img/portfolio/app2.jpg" class="link-preview" data-lightbox="portfolio" data-title="App 2" title="Preview"><i class="ion ion-eye"></i></a>
+                  <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="img/portfolio/card2.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href="#">Card 2</a></h4>
+                <p>Card</p>
+                <div>
+                  <a href="img/portfolio/card2.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 2" title="Preview"><i class="ion ion-eye"></i></a>
+                  <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web" data-wow-delay="0.1s">
+            <div class="portfolio-wrap">
+              <img src="img/portfolio/web2.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href="#">Web 2</a></h4>
+                <p>Web</p>
+                <div>
+                  <a href="img/portfolio/web2.jpg" class="link-preview" data-lightbox="portfolio" data-title="Web 2" title="Preview"><i class="ion ion-eye"></i></a>
+                  <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app" data-wow-delay="0.2s">
+            <div class="portfolio-wrap">
+              <img src="img/portfolio/app3.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href="#">App 3</a></h4>
+                <p>App</p>
+                <div>
+                  <a href="img/portfolio/app3.jpg" class="link-preview" data-lightbox="portfolio" data-title="App 3" title="Preview"><i class="ion ion-eye"></i></a>
+                  <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="img/portfolio/card1.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href="#">Card 1</a></h4>
+                <p>Card</p>
+                <div>
+                  <a href="img/portfolio/card1.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 1" title="Preview"><i class="ion ion-eye"></i></a>
+                  <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card" data-wow-delay="0.1s">
+            <div class="portfolio-wrap">
+              <img src="img/portfolio/card3.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href="#">Card 3</a></h4>
+                <p>Card</p>
+                <div>
+                  <a href="img/portfolio/card3.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 3" title="Preview"><i class="ion ion-eye"></i></a>
+                  <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web" data-wow-delay="0.2s">
+            <div class="portfolio-wrap">
+              <img src="img/portfolio/web1.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4><a href="#">Web 1</a></h4>
+                <p>Web</p>
+                <div>
+                  <a href="img/portfolio/web1.jpg" class="link-preview" data-lightbox="portfolio" data-title="Web 1" title="Preview"><i class="ion ion-eye"></i></a>
+                  <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    -->
+
+    <!-- #portfolio -->
+
+
+
+
+    <!--==========================
+      Contact Section
+    ============================-->
+
+    <!--
+    <section id="contact">
+        <div class="container-fluid">
+
+            <div class="section-header">
+                <h3>İletişim</h3>
+            </div>
+
+            <div class="row wow fadeInUp">
+                <!--
+                <div class="col-lg-6">
+                    <div class="map mb-4 mb-lg-0">
+                        <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBiIPLXOKnMzdWGVJf1kgsdkeuYUDzOXog
+    &q=Deniz+Bilgisayar,Gazipaşa+Antalya" frameborder="0" style="border:0; width: 100%; height: 312px;" allowfullscreen></iframe>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="row">
+                        <div class="col-md-5 info">
+                            <i class="ion-ios-location-outline"></i>
+                            <p>İhsan Oğuz İş Merkezi Kat:2, Gazipaşa Antalya</p>
+                        </div>
+                        <div class="col-md-4 info">
+                            <i class="ion-ios-email-outline"></i>
+                            <p>info@example.com</p>
+                        </div>
+                        <div class="col-md-3 info">
+                            <i class="ion-ios-telephone-outline"></i>
+                            <p>0 242 572 55 51</p>
+                        </div>
+                    </div>
+
+                    <div class="form">
+                        <div id="sendmessage">Mesajınız için teşekkürler.</div>
+
+
+                        <form th:action="@{'/contact/new'}" th:object="${iletisim}" method="post" role="form" class="contactForm">
+                            <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                                <p>Lütfen Bilgileri Doğru Giriniz</p>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-lg-6" th:class="${#fields.hasErrors('adSoyad')}
+                                ? 'form-group col-lg-6 has-error' : 'form-group col-lg-6'">
+                                    <input type="text" name="name" th:field="*{adSoyad}" class="form-control" id="name" placeholder="Adınız ve Soyadınız" data-rule="minlen:4" data-msg="Lütfen en az 4 karakter giriniz" th:errorclass="has-error"/>
+                                    <span class="help-block" th:if="${#fields.hasErrors('adSoyad')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('adSoyad')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                    <div class="validation"></div>
+                                </div>
+
+                                <div class="form-group col-lg-6" th:class="${#fields.hasErrors('email')}
+                                ? 'col-lg-6 form-group has-error' : 'col-lg-6 form-group'">
+                                    <input type="email" class="form-control" th:field="*{email}" th:errorclass="has-error" name="email" id="email" placeholder="Email" data-rule="email" data-msg="Lütfen mail adresinizi doğru giriniz" />
+                                    <span class="help-block" th:if="${#fields.hasErrors('email')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('email')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                    <div class="validation"></div>
+                                </div>
+                            </div>
+                            <div class="form-group" th:class="${#fields.hasErrors('title')}
+                                ? 'form-group has-error' : 'form-group'">
+                                <input type="text" class="form-control" th:field="*{title}" th:errorclass="has-error" name="subject" id="subject" placeholder="Konu" data-rule="minlen:4" data-msg="Konu başlığı olarak en az 4 karakter yazmalısınız" />
+                                <span class="help-block" th:if="${#fields.hasErrors('title')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('title')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                <div class="validation"></div>
+                            </div>
+                            <div class="form-group" th:class="${#fields.hasErrors('title')}
+                                ? 'form-group has-error' : 'form-group'">
+                                <textarea class="form-control" name="message" th:field="*{message}" th:errorclass="has-error" rows="5" data-rule="required" data-msg="Lütfen mesaj kısmını doldurunuz." placeholder="Mesaj"></textarea>
+                                <span class="help-block" th:if="${#fields.hasErrors('message')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('message')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                <div class="validation"></div>
+                            </div>
+                            <div class="text-center"><button type="submit" title="Send Message">Gönder</button></div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section> #contact -->
+
+</main>
+
+<!--==========================
+  Footer
+
+<footer id="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-4 col-md-6 footer-info">
+                    <h3>Deniz Bilgisayar</h3>
+                    <p>Hal Otomasyon Yazılımı ve sektöre özel çözümler</p>
+                </div>
+
+                <div class="col-lg-2 col-md-6 footer-links">
+                    <h4>Bağlantılar</h4>
+                    <ul>
+                        <li><a href="#">Anasayfa</a></li>
+                        <li><a href="#">Kurumsal</a></li>
+                        <li><a href="#">Ürünlerimiz</a></li>
+                        <li><a href="#">Demo</a></li>
+                        <li><a href="#">Haberler</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-contact">
+                    <h4>Adres</h4>
+                    <p>
+                        İhsan Oğuz İş Merkezi Kat:2 <br>
+                        Gazipaşa, 07900<br>
+                        Antalya <br>
+                        <strong>Phone:</strong> 0 242 572 55 51<br>
+                        <strong>Email:</strong> info@example.com<br>
+                    </p>
+
+                    <div class="social-links">
+                        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+                        <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                        <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-newsletter">
+                  <h4></h4>
+                  <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna veniam enim veniam illum dolore legam minim quorum culpa amet magna export quem marada parida nodela caramase seza.</p>
+                  <form action="" method="post">
+                    <input type="email" name="email"><input type="submit"  value="Subscribe">
+                  </form>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="copyright">
+            &copy; Copyright <strong>Seyda Özdemir</strong>.
+        </div>
+    </div>
+</footer> #footer -->
+
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+
+
+</body>
+</html>

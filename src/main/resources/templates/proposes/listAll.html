@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/adminlayout :: layout (~{::body},'proposes/listAll')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Yönetici</title>
+
+</head>
+<body>
+<div id="page-content-wrapper">
+    <div class="card bg-light mb-3">
+        <div class="card-header">
+            <div class="row" style="margin-top:1em;">
+                <div class="col-md-12">
+                    <h1 class="card-title">Teklifler</h1>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover ">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>ID</th>
+                        <th>Şirket Adı</th>
+                        <th>Ad ve Soyad</th>
+                        <th>Telefon</th>
+                        <th>E-mail</th>
+                        <th>İl</th>
+                        <th>İlçe</th>
+                        <th>Teklif Tarihi</th>
+                        <th>Ürün ID</th>
+                        <th>Sil</th>
+                    </tr>
+                    </thead>
+                    <tr th:each="propose : ${proposes}">
+                        <td th:text="${propose.id}">334</td>
+                        <td th:text="${propose.sirketAdi}">334</td>
+                        <td th:text="${propose.adSoyad}">334</td>
+                        <td th:text="${propose.tel}">334</td>
+                        <td th:text="${propose.email}">334</td>
+                        <td th:text="${propose.il}">334</td>
+                        <td th:text="${propose.ilce}">334</td>
+                        <td th:text="${propose.savedate}">334</td>
+                        <td th:text="${propose.product.id}"></td>
+                        <td><a href="#" th:href="@{'/propose/'+ ${propose.product.id}+'/delete/'+ ${propose.id}}">Sil</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->
+
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'propose')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Deniz Hal Otomasyon</title>
+</head>
+<body>
+
+<main id="main">
+    <section id="kurumsal">
+        <div class="container" style="padding-top:4em;">
+            <div th:if="${param.success}">
+                <div class="alert alert-info">Teklifiniz başarıyla iletilmiştir.</div>
+            </div>
+            <h2>Teklif Al</h2>
+
+        </div>
+
+        <div class="row about-container">
+
+            <div class="col-lg-6 content order-lg-1 order-2">
+                <p>
+                    Siz de işletmenizde Deniz Hal Otomasyonu kullanmak istiyorsanız hemen teklif verebilirsiniz.
+                </p>
+
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 col-md-offset-3">
+
+                            <form  th:object="${propose}" th:action="@{'/propose/yeniteklif'}" method="POST" id="myform">
+                                <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                                    <p>Lütfen Bilgileri Doğru Giriniz</p>
+                                </div>
+                                <div class="col-md-12 form-group" th:class="${#fields.hasErrors('sirketAdi')}
+                                ? 'col-md-12 form-group has-error' : 'col-md-12 form-group'">
+                                    <label>Şirket Adı</label>
+                                    <input type="text" class="form-control" th:field="*{sirketAdi}" th:errorclass="has-error"/>
+                                    <span class="help-block" th:if="${#fields.hasErrors('sirketAdi')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('sirketAdi')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                </div>
+                                <div class="col-md-12 form-group" th:class="${#fields.hasErrors('adSoyad')}
+                                ? 'col-md-12 form-group has-error' : 'col-md-12 form-group'">
+                                    <label>Adınız ve Soyadınız</label>
+                                    <input type="text" class="form-control" th:field="*{adSoyad}" th:errorclass="has-error"/>
+                                    <span class="help-block" th:if="${#fields.hasErrors('adSoyad')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('adSoyad')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                </div>
+                                <div class="col-md-12 form-group" th:class="${#fields.hasErrors('tel')}
+                                ? 'col-md-12 form-group has-error' : 'col-md-12 form-group'">
+                                    <label>Telefon Numarası</label>
+                                    <input type="text" class="form-control" th:field="*{tel}" th:errorclass="has-error"/>
+                                    <span class="help-block" th:if="${#fields.hasErrors('tel')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('tel')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label>E-mail</label>
+                                    <input type="text" class="form-control" th:field="*{email}"/>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label>İl</label>
+                                    <input type="text" class="form-control" th:field="*{il}"/>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label>İlçe</label>
+                                    <input type="text" class="form-control" th:field="*{ilce}"/>
+                                </div>
+
+                                <div class="col-md-12 form-group text-right">
+
+                                    <button type="submit" class="btn btn-success" id="submit-code">Teklif Al</button>
+                                </div>
+
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 background order-lg-2 order-1 wow fadeInUp">
+                <img th:src="@{/images/hal.png}" class="img-fluid" alt="">
+            </div>
+
+        </div>
+
+    </section>
+</main>
+
+</body>
+</html>

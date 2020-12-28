@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/adminlayout :: layout (~{::body},'kurumsal/kurumsalUpdate')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Haber Ekle</title>
+
+</head>
+<body>
+<div id="page-content-wrapper">
+    <div class="card bg-light mb-3">
+        <div class="card-header">
+            <div class="row" style="margin-top:1em;">
+                <div class="col-md-12">
+                    <h1 class="card-title">Kurumsal Bilgileri Güncelle</h1>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <!--/*@thymesVar id="ingredient" type="guru.springframework.commands.IngredientCommand"*/-->
+                    <form  th:object="${kurumsal}" th:action="@{'/admin/kurumsal/update'}" enctype="multipart/form-data" method="post" id="myform">
+                        <input type="hidden" th:field="*{id}"/>
+                        <input type="hidden" th:field="*{savedate}"/>
+                        <div class="col-md-6 form-group">
+                            <label>Başlık-1</label>
+                            <input type="text" class="form-control" th:field="*{title}"/>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>İçerik-1</label>
+                            <textarea rows="10" cols="50" class="support-answer-textarea" th:field="*{details}" form="myform"> </textarea>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Fotoğraf-1</label>
+                            <td><img style="width:100%;" class="img-responsive" th:src="${kurumsal.foto_url_1}"/></td>
+                            <input type="hidden" th:field="*{foto_url_1}"/>
+                            <input type="file" name="foto_1" class="form-control"/>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Başlık-2</label>
+                            <input type="text" class="form-control" th:field="*{title2}"/>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>İçerik-2</label>
+                            <textarea rows="10" cols="50" class="support-answer-textarea" th:field="*{details2}" form="myform"> </textarea>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Fotoğraf-2</label>
+                            <td><img style="width:100%;" class="img-responsive" th:src="${kurumsal.foto_url_2}"/></td>
+                            <input type="hidden" th:field="*{foto_url_2}"/>
+                            <input type="file" name="foto_2" class="form-control"/>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Başlık-3</label>
+                            <input type="text" class="form-control" th:field="*{title3}"/>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>İçerik-3</label>
+                            <textarea rows="10" cols="50" class="support-answer-textarea" th:field="*{details3}" form="myform"> </textarea>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Fotoğraf-3</label>
+                            <td><img style="width:100%;" class="img-responsive" th:src="${kurumsal.foto_url_3}"/></td>
+                            <input type="hidden" th:field="*{foto_url_3}"/>
+                            <input type="file" name="foto_3" class="form-control"/>
+                        </div>
+
+
+
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->
+
+
+
+
+</body>
+</html>

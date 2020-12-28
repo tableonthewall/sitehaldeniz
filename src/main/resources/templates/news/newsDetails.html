@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/adminlayout :: layout (~{::body},'news/newsDetails')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Yönetici</title>
+
+</head>
+<body>
+<div id="page-content-wrapper">
+    <div class="card bg-light mb-3">
+        <div class="card-header">
+            <div class="row" style="margin-top:1em;">
+                <div class="col-md-10">
+                    <h1 class="card-title" th:text="${news.title}">Başlık</h1>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary" href="#" th:href="@{'/news/' + ${news.id} + '/update'}" role="button">Güncelle</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover ">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>ID</th>
+                        <th>Başlık</th>
+                        <th>İçerik</th>
+                        <th>Fotoğraf</th>
+                        <th>Tarih</th>
+                        <th>Haber Sahibi</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td th:text="${news.id}"></td>
+                        <td th:text="${news.title}"></td>
+                        <td th:text="${news.details}"></td>
+                        <td><img style="width:100%;" class="img-responsive" th:src="${news.foto_url}"/></td>
+                        <td th:text="${news.savedate}"></td>
+                        <td th:text="${news.user.firstname}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->
+
+
+</body>
+</html>

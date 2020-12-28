@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/adminlayout :: layout (~{::body},'products/listProducts')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Yönetici</title>
+
+</head>
+<body>
+
+<div id="page-content-wrapper">
+    <div class="card text-white bg-secondary mb-3">
+        <div class="card-header">
+            <div class="row" style="margin-top:1em;">
+                <div class="col-md-10">
+                    <h1 class="card-title">Ürünler</h1>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary" href="#" th:href="@{'/admin/products/new'}" role="button">Yeni Ürün</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped table-dark ">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>ID</th>
+                        <th>Ürün Adı</th>
+                        <th>Versiyon</th>
+                        <th>Yükleme Tarihi</th>
+                        <th>Demo Link</th>
+                        <th>Uygulama Link</th>
+                        <th>Teklifler</th>
+                        <th>Detay</th>
+                        <th>Güncelle</th>
+                        <th>Sil</th>
+                    </tr>
+                    </thead>
+                    <tr th:each="product : ${products}">
+                        <td th:text="${product.id}">334</td>
+                        <td th:text="${product.name}">334</td>
+                        <td th:text="${product.version}">334</td>
+                        <td th:text="${product.savedate}">334</td>
+                        <td th:text="${product.demo_link}">334</td>
+                        <td th:text="${product.app_link}">334</td>
+                        <td >
+                            <a href="#" th:href="@{'/propose/'+${product.id}+'/list'}" th:text="${#lists.size(product.proposes)}">link</a>
+                        </td>
+                        <td><a href="#" th:href="@{'/admin/products/' + ${product.id} + '/show'}">Detay</a></td>
+                        <td><a href="#" th:href="@{'/admin/products/' + ${product.id} + '/update'}">Güncelle</a></td>
+                        <td><a href="#" th:href="@{'/admin/products/' + ${product.id} + '/delete'}">Sil</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->
+
+</body>
+</html>
