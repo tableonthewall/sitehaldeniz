@@ -19,7 +19,7 @@ INSERT INTO roles ( name) VALUES
 INSERT INTO users (email, password, firstname ,lastname) VALUES
 ('faruksengoz@denizhal.com', '$2a$10$hKDVYxLefVHV/vtuPhWD3OigtRyOykRLDdUAp80Z1crSoS1lFqaFS', 'Faruk' ,'Şengöz'),
 ('seydaozdemir@denizhal.com', '$2a$10$ByIUiNaRfBKSV6urZoBBxe4UbJ/sS6u1ZaPORHF9AtNWAuVPVz1by', 'Seyda' ,'Özdemir'),
-('appdownload@denizhal.com', '$2a$10$ByIUiNaRfBKSV6urZoBBxe4UbJ/sS6u1ZaPORHF9AtNWAuVPVz1by', 'App' ,'Download');;
+('appdownload@denizhal.com', '$2a$10$ByIUiNaRfBKSV6urZoBBxe4UbJ/sS6u1ZaPORHF9AtNWAuVPVz1by', 'App' ,'Download');
 
 
 

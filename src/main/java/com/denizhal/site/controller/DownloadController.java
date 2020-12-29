@@ -27,16 +27,18 @@ public class DownloadController {
     @GetMapping("/demo")
     public void getDemo(HttpServletRequest request,HttpServletResponse response) throws IOException {
         //linux
-        Path demopath = Paths.get("src//main//uploads//demo//");
+        Path demopath = Paths.get("src/main/uploads/demo/");
         String filename=productsRepository.findFirstByOrderByIdDesc().getDemo_link();
         //last indexof linux a göre / şekline getirildi
         System.out.println(filename);
-        int i=filename.lastIndexOf("//");
+        int i=filename.lastIndexOf("/");
         String newFileName=filename.substring(i);
+        System.out.println(newFileName);
         File file=new File(demopath+newFileName);
-
+        System.out.println(file.getAbsoluteFile());
 
         if(file.exists()){
+            System.out.println("dosya bulundu");
             String mimeType= URLConnection.guessContentTypeFromName(file.getName());
             if(mimeType==null){
                 mimeType="application/octet-stream";
