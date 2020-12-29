@@ -69,7 +69,7 @@ public class ProductsController {
             }catch (Exception e){
                 e.printStackTrace();
             }
-            product.setDemo_link("/src/main/uploads/demo/" +demolink.getOriginalFilename());
+            product.setDemo_link("\\src\\main\\uploads\\demo/" +demolink.getOriginalFilename());
         }
         if(!applink.isEmpty()){
             Path apppath = Paths.get("src\\main\\uploads\\app");
@@ -79,7 +79,7 @@ public class ProductsController {
             }catch (Exception e){
                 e.printStackTrace();
             }
-            product.setApp_link("/src/main/uploads/app/" +applink.getOriginalFilename());
+            product.setApp_link("\\src\\main\\uploads\\app\\" +applink.getOriginalFilename());
         }
         product.setProposes(proposeService.getProposesByProductId(product.getId()));
         productsService.save(product);
@@ -104,8 +104,8 @@ public class ProductsController {
             e.printStackTrace();
         }
 
-        product.setDemo_link("/src/main/uploads/demo/" +demolink.getOriginalFilename());
-        product.setApp_link("/src/main/uploads/app/" +applink.getOriginalFilename());
+        product.setDemo_link("\\src\\main\\uploads\\demo\\" +demolink.getOriginalFilename());
+        product.setApp_link("\\src\\main\\uploads\\app\\" +applink.getOriginalFilename());
         productsService.save(product);
         return "redirect:/admin/products";
     }

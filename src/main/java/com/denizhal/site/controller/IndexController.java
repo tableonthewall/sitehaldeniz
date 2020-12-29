@@ -1,5 +1,6 @@
 package com.denizhal.site.controller;
 
+import com.denizhal.site.exception.NotFoundException;
 import com.denizhal.site.model.Contact;
 import com.denizhal.site.model.News;
 import com.denizhal.site.repositories.UserRepository;
@@ -9,13 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 
 @Controller
@@ -59,21 +60,28 @@ public class IndexController {
 
          */
         model.addAttribute("topNews",newsService.getTopList());
-        return pageAndSort(1,model);
+        return pageAndSort("1",model);
     }
     @GetMapping("/haberler/search")
     public String arama(@RequestParam(name="keyword") String keyword,Model model){
-        return aramaPage(1,keyword,model);
+        return aramaPage("1",keyword,model);
     }
 
     @GetMapping("/haberler/search/{pageNo}")
-    public String aramaPage(@PathVariable int pageNo,@RequestParam(name = "keyword") String keyword, Model model){
-        Pageable pageable=PageRequest.of(pageNo-1,5,Sort.by("savedate").descending());
+    public String aramaPage(@PathVariable String pageNo,@RequestParam(name = "keyword") String keyword, Model model){
+        //Hatayı arıyorum
+        try {
+            Integer newID=Integer.parseInt(pageNo);
+        }catch(NumberFormatException e){
+            throw new NumberFormatException("Girilen ifade sayı değildir :"+keyword);
+        }
+
+        Pageable pageable=PageRequest.of(Integer.valueOf(pageNo)-1,5,Sort.by("savedate").descending());
         Page<News> pageSearch=newsService.searchNews(keyword,pageable);
         List<News> haberler=pageSearch.getContent();
         haberler=newsService.shortNews(haberler);
         model.addAttribute("haberler",haberler);
-        model.addAttribute("currentPage",pageNo);
+        model.addAttribute("currentPage",Integer.valueOf(pageNo));
         model.addAttribute("totalPages",pageSearch.getTotalPages());
         model.addAttribute("totalItems",pageSearch.getTotalElements());
         System.out.println("current page:"+ pageNo +" total pages: "+pageSearch.getTotalPages()+ " totalItems: "+pageSearch.getTotalElements());
@@ -82,14 +90,20 @@ public class IndexController {
     }
 
     @GetMapping("/haberler/{pageNo}")
-    public String pageAndSort(@PathVariable int pageNo, Model model)
+    public String pageAndSort(@PathVariable String pageNo, Model model)
     {
-        Pageable pageable = PageRequest.of(pageNo-1,5, Sort.by("savedate").descending());
+        try {
+            Integer newID=Integer.parseInt(pageNo);
+        }catch(NumberFormatException e){
+            throw new NumberFormatException("Girilen ifade sayı değildir :"+pageNo);
+        }
+
+        Pageable pageable = PageRequest.of(Integer.valueOf(pageNo)-1,5, Sort.by("savedate").descending());
         Page<News> pagedHaberler=newsService.findPaginated(pageable);
         List<News> haberler=pagedHaberler.getContent();
         haberler=newsService.shortNews(haberler);
         model.addAttribute("haberler",haberler);
-        model.addAttribute("currentPage",pageNo);
+        model.addAttribute("currentPage",Integer.valueOf(pageNo));
         model.addAttribute("totalPages",pagedHaberler.getTotalPages());
         model.addAttribute("totalItems",pagedHaberler.getTotalElements());
         System.out.println("current page:"+ pageNo +" total pages: "+pagedHaberler.getTotalPages()+ " totalItems: "+pagedHaberler.getTotalElements());
@@ -101,6 +115,13 @@ public class IndexController {
     @GetMapping("/haberler/{id}/{title}")
     public String newsDetails(@PathVariable String id,Model model){
         //Burada haber detayını istediğinde ziyaret sayısını 1 arttırmak istiyorum
+        //Hatayı arıyorum
+        try {
+            Integer newID=Integer.parseInt(id);
+        }catch(NumberFormatException e){
+            throw new NumberFormatException("Girilen ifade sayı değildir :"+id);
+        }
+
         newsService.ziyaretciArttir(Integer.valueOf(id));
         model.addAttribute("news",newsService.getNew(Integer.valueOf(id)));
         //model.addAttribute("haberler",newsService.getNews());
@@ -114,10 +135,6 @@ public class IndexController {
         model.addAttribute("title",title);
         return "products";
     }
-
-
-
-
 
 
 }

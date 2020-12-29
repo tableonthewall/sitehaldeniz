@@ -48,7 +48,7 @@ public class AppDownloadController {
         System.out.println("istek geldi");
 
         String filename=productsRepository.findFirstByOrderByIdDesc().getApp_link();
-        int i=filename.lastIndexOf('/');
+        int i=filename.lastIndexOf('\\');
         String newFileName=filename.substring(i);
         Resource resource=null;
         try{

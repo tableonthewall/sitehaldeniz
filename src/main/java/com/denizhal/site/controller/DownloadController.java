@@ -28,7 +28,8 @@ public class DownloadController {
     public void getDemo(HttpServletRequest request,HttpServletResponse response) throws IOException {
         Path demopath = Paths.get("src\\main\\uploads\\demo\\");
         String filename=productsRepository.findFirstByOrderByIdDesc().getDemo_link();
-        int i=filename.lastIndexOf('/');
+        //last indexof linux a göre \\ şekline getirildi
+        int i=filename.lastIndexOf('\\');
         String newFileName=filename.substring(i);
         File file=new File(demopath+newFileName);
 

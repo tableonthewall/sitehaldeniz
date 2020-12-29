@@ -44,6 +44,11 @@ public class NewsController {
 
     @GetMapping("/{id}/show")
     public String showNews(@PathVariable String id,Model model){
+        try {
+            Integer newID=Integer.parseInt(id);
+        }catch(NumberFormatException e){
+            throw new NumberFormatException("Girilen ifade sayı değildir :"+id);
+        }
         model.addAttribute("news",newsService.getNew(Integer.valueOf(id)));
         return "news/newsDetails";
     }
@@ -69,7 +74,7 @@ public class NewsController {
             }catch (Exception e){
                 e.printStackTrace();
             }
-            news.setFoto_url("/src/main/uploads/" +file.getOriginalFilename());
+            news.setFoto_url("\\src\\main\\uploads\\" +file.getOriginalFilename());
         }
         news.setUser(adminService.findUserByEmail(principal.getName()));
         newsService.save(news);
@@ -87,7 +92,7 @@ public class NewsController {
             e.printStackTrace();
         }
 
-        news.setFoto_url("/src/main/uploads/" +file.getOriginalFilename());
+        news.setFoto_url("\\src\\main\\uploads\\" +file.getOriginalFilename());
         news.setZiyaret(0);
         news.setUser(adminService.findUserByEmail(principal.getName()));
         newsService.save(news);

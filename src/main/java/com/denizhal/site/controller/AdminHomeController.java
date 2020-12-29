@@ -111,7 +111,7 @@ public class AdminHomeController {
             }catch (Exception e){
                 e.printStackTrace();
             }
-            kurumsal.setFoto_url_1("/src/main/uploads/"+foto_1.getOriginalFilename());
+            kurumsal.setFoto_url_1("\\src\\main\\uploads\\"+foto_1.getOriginalFilename());
         }
         if(!foto_2.isEmpty()){
             try{
@@ -119,7 +119,7 @@ public class AdminHomeController {
             }catch (Exception e){
                 e.printStackTrace();
             }
-            kurumsal.setFoto_url_2("/src/main/uploads/"+foto_2.getOriginalFilename());
+            kurumsal.setFoto_url_2("\\src\\main\\uploads\\"+foto_2.getOriginalFilename());
         }
         if(!foto_3.isEmpty()){
             try{
@@ -127,7 +127,7 @@ public class AdminHomeController {
             }catch (Exception e){
                 e.printStackTrace();
             }
-            kurumsal.setFoto_url_3("/src/main/uploads/"+foto_3.getOriginalFilename());
+            kurumsal.setFoto_url_3("\\src\\main\\uploads\\"+foto_3.getOriginalFilename());
         }
 
         kurumsal.setSavedate(LocalDate.now());
