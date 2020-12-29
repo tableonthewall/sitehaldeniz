@@ -62,24 +62,24 @@ public class ProductsController {
     public String handlingUpdate(@RequestParam MultipartFile demolink, @RequestParam MultipartFile applink,
                                  @ModelAttribute Product product){
         if(!demolink.isEmpty()){
-            Path demopath = Paths.get("src\\main\\uploads\\demo");
+            Path demopath = Paths.get("src/main/uploads/demo");
             try {
                 fileService.uploadFile(demolink,demopath);
 
             }catch (Exception e){
                 e.printStackTrace();
             }
-            product.setDemo_link("\\src\\main\\uploads\\demo/" +demolink.getOriginalFilename());
+            product.setDemo_link("/src/main/uploads/demo/" +demolink.getOriginalFilename());
         }
         if(!applink.isEmpty()){
-            Path apppath = Paths.get("src\\main\\uploads\\app");
+            Path apppath = Paths.get("src/main/uploads/app");
             try {
                 fileService.uploadFile(applink,apppath);
 
             }catch (Exception e){
                 e.printStackTrace();
             }
-            product.setApp_link("\\src\\main\\uploads\\app\\" +applink.getOriginalFilename());
+            product.setApp_link("/src/main/uploads/app/" +applink.getOriginalFilename());
         }
         product.setProposes(proposeService.getProposesByProductId(product.getId()));
         productsService.save(product);
@@ -89,8 +89,8 @@ public class ProductsController {
     @PostMapping("/new")
     public String handlingNewProduct(@RequestParam MultipartFile demolink, @RequestParam MultipartFile applink,
                                      @ModelAttribute Product product){
-        Path demopath = Paths.get("src\\main\\uploads\\demo");
-        Path apppath = Paths.get("src\\main\\uploads\\app");
+        Path demopath = Paths.get("src/main/uploads/demo");
+        Path apppath = Paths.get("src/main/uploads/app");
         try {
             fileService.uploadFile(demolink,demopath);
 
@@ -104,8 +104,8 @@ public class ProductsController {
             e.printStackTrace();
         }
 
-        product.setDemo_link("\\src\\main\\uploads\\demo\\" +demolink.getOriginalFilename());
-        product.setApp_link("\\src\\main\\uploads\\app\\" +applink.getOriginalFilename());
+        product.setDemo_link("/src/main/uploads/demo/" +demolink.getOriginalFilename());
+        product.setApp_link("/src/main/uploads/app/" +applink.getOriginalFilename());
         productsService.save(product);
         return "redirect:/admin/products";
     }

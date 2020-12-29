@@ -48,8 +48,10 @@ public class AppDownloadController {
         System.out.println("istek geldi");
 
         String filename=productsRepository.findFirstByOrderByIdDesc().getApp_link();
-        int i=filename.lastIndexOf('\\');
-        String newFileName=filename.substring(i);
+        //linux
+        System.out.println(filename);
+        int i=filename.lastIndexOf("//");
+        String newFileName=filename.substring(i+1);
         Resource resource=null;
         try{
              resource= fileService.loadFileAsResource(newFileName);

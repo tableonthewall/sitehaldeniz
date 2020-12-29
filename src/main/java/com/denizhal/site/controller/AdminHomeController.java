@@ -104,14 +104,14 @@ public class AdminHomeController {
                                          @RequestParam MultipartFile foto_2,
                                          @RequestParam MultipartFile foto_3,
                                          @ModelAttribute("kurumsal") Kurumsal kurumsal){
-        Path filePath= Paths.get("src\\main\\uploads");
+        Path filePath= Paths.get("src/main/uploads");
         if(!foto_1.isEmpty()){
             try{
                 fileService.uploadFile(foto_1,filePath);
             }catch (Exception e){
                 e.printStackTrace();
             }
-            kurumsal.setFoto_url_1("\\src\\main\\uploads\\"+foto_1.getOriginalFilename());
+            kurumsal.setFoto_url_1("/src/main/uploads/"+foto_1.getOriginalFilename());
         }
         if(!foto_2.isEmpty()){
             try{
@@ -119,7 +119,7 @@ public class AdminHomeController {
             }catch (Exception e){
                 e.printStackTrace();
             }
-            kurumsal.setFoto_url_2("\\src\\main\\uploads\\"+foto_2.getOriginalFilename());
+            kurumsal.setFoto_url_2("/src/main/uploads/"+foto_2.getOriginalFilename());
         }
         if(!foto_3.isEmpty()){
             try{
@@ -127,7 +127,7 @@ public class AdminHomeController {
             }catch (Exception e){
                 e.printStackTrace();
             }
-            kurumsal.setFoto_url_3("\\src\\main\\uploads\\"+foto_3.getOriginalFilename());
+            kurumsal.setFoto_url_3("/src/main/uploads/"+foto_3.getOriginalFilename());
         }
 
         kurumsal.setSavedate(LocalDate.now());

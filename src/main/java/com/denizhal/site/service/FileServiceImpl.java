@@ -17,7 +17,7 @@ import java.nio.file.Paths;
 
 @Service
 public class FileServiceImpl implements FileService {
-    private final Path root = Paths.get("src\\main\\uploads");
+    private final Path root = Paths.get("src/main/uploads");
     private final ProductsRepository productsRepository;
 
     public FileServiceImpl(ProductsRepository productsRepository) {
@@ -38,7 +38,7 @@ public class FileServiceImpl implements FileService {
     @Override
     public Resource loadFileAsResource(String filename) {
         try {
-            Path demopath = Paths.get("src\\main\\uploads\\app\\");
+            Path demopath = Paths.get("src/main/uploads/app/");
             Product product=productsRepository.findFirstByOrderByIdDesc();
             String fileName=product.getApp_link();
             int i=fileName.lastIndexOf('/');

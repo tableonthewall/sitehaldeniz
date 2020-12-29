@@ -68,13 +68,13 @@ public class NewsController {
     @PostMapping("/update")
     public String handlingUpdate(@RequestParam MultipartFile file,@ModelAttribute News news,Principal principal,Model model){
         if(!file.isEmpty()){
-            Path root = Paths.get("src\\main\\uploads");
+            Path root = Paths.get("src/main/uploads");
             try {
                 fileService.uploadFile(file,root);
             }catch (Exception e){
                 e.printStackTrace();
             }
-            news.setFoto_url("\\src\\main\\uploads\\" +file.getOriginalFilename());
+            news.setFoto_url("/src/main/uploads/" +file.getOriginalFilename());
         }
         news.setUser(adminService.findUserByEmail(principal.getName()));
         newsService.save(news);
@@ -84,7 +84,7 @@ public class NewsController {
     @PostMapping("/new")
     public String handlingSaveNews(@RequestParam MultipartFile file, @ModelAttribute News news,
                                    Principal principal, Model model){
-        Path root = Paths.get("src\\main\\uploads");
+        Path root = Paths.get("src/main/uploads");
         try {
             fileService.uploadFile(file,root);
 
@@ -92,7 +92,7 @@ public class NewsController {
             e.printStackTrace();
         }
 
-        news.setFoto_url("\\src\\main\\uploads\\" +file.getOriginalFilename());
+        news.setFoto_url("/src/main/uploads/" +file.getOriginalFilename());
         news.setZiyaret(0);
         news.setUser(adminService.findUserByEmail(principal.getName()));
         newsService.save(news);
