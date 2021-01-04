@@ -21,7 +21,6 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 @Controller
-@Transactional
 public class IndexController {
 
 
