@@ -17,7 +17,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Service
-@Transactional
 public class FileServiceImpl implements FileService {
     private final Path root = Paths.get("src/main/uploads");
     private final ProductsRepository productsRepository;

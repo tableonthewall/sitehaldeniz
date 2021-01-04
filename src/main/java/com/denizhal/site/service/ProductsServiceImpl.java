@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Service
-@Transactional
 public class ProductsServiceImpl implements ProductsService {
     private final ProductsRepository productsRepository;
 

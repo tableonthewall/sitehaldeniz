@@ -15,7 +15,6 @@ import java.util.List;
 
 //Transactional ekledim
 @Service
-@Transactional
 public class NewsServiceImpl implements NewsService {
 
     private final NewsRepository newsRepository;

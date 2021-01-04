@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public class ContactServiceImpl implements ContactService{
     private final ContactRepository contactRepository;
 
