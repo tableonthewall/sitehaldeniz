@@ -5,6 +5,7 @@ import com.denizhal.site.service.AdminService;
 import com.denizhal.site.service.FileService;
 import com.denizhal.site.service.NewsService;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,6 +15,7 @@ import java.nio.file.Paths;
 import java.security.Principal;
 
 @Controller
+@Transactional
 @RequestMapping("/news")
 public class NewsController {
 
