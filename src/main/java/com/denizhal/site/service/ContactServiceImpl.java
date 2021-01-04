@@ -3,7 +3,6 @@ package com.denizhal.site.service;
 import com.denizhal.site.model.Contact;
 import com.denizhal.site.repositories.ContactRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,7 +15,6 @@ public class ContactServiceImpl implements ContactService{
     }
 
     @Override
-    @Transactional
     public void save(Contact contact) {
         contactRepository.save(contact);
     }
