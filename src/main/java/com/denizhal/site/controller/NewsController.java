@@ -67,7 +67,6 @@ public class NewsController {
     }
     //Eğer gönderdiğim fotoğraf değiştirilmiyor ise yani file empty ise if çalışmadan diğer kısımlar güncellenir.
     @PostMapping("/update")
-    @Transactional
     public String handlingUpdate(@RequestParam MultipartFile file,@ModelAttribute News news,Principal principal,Model model){
         if(!file.isEmpty()){
             Path root = Paths.get("src/main/uploads");
@@ -85,7 +84,6 @@ public class NewsController {
     }
 
     @PostMapping("/new")
-    @Transactional
     public String handlingSaveNews(@RequestParam MultipartFile file, @ModelAttribute News news,
                                    Principal principal, Model model){
         Path root = Paths.get("src/main/uploads");

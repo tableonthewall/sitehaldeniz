@@ -16,6 +16,7 @@ public class ContactServiceImpl implements ContactService{
     }
 
     @Override
+    @Transactional
     public void save(Contact contact) {
         contactRepository.save(contact);
     }
