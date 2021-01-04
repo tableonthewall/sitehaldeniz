@@ -3,9 +3,11 @@ package com.denizhal.site.service;
 import com.denizhal.site.model.Product;
 import com.denizhal.site.repositories.ProductsRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Service
+@Transactional
 public class ProductsServiceImpl implements ProductsService {
     private final ProductsRepository productsRepository;
 

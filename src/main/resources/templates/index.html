@@ -15,7 +15,7 @@
     <div class="container">
 
         <div class="intro-img">
-            <img th:src="@{/images/newlogo.png}" alt="" class="img-fluid">
+            <img th:src="@{/images/newlogo2.png}" alt="" class="img-fluid">
         </div>
 
         <div class="intro-info">
@@ -71,13 +71,13 @@
                 </div>
 
                 <div class="col-lg-6 background order-lg-2 order-1 wow fadeInUp">
-                    <img  th:src="${kurumsal.foto_url_1}" class="img-fluid" alt="">
+                    <img  th:src="@{${kurumsal.foto_url_1}}" class="img-fluid" alt="">
                 </div>
             </div>
 
             <div class="row about-extra">
                 <div class="col-lg-6 wow fadeInUp">
-                    <img th:src="${kurumsal.foto_url_2}" class="img-fluid" alt="">
+                    <img th:src="@{${kurumsal.foto_url_2}}" class="img-fluid" alt="">
                 </div>
 
                 <div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0">
@@ -90,7 +90,7 @@
 
             <div class="row about-extra">
                 <div class="col-lg-6 wow fadeInUp order-1 order-lg-2">
-                    <img th:src="${kurumsal.foto_url_3}"  class="img-fluid" alt="">
+                    <img th:src="@{${kurumsal.foto_url_3}}"  class="img-fluid" alt="">
                 </div>
 
                 <div class="col-lg-6 wow fadeInUp pt-4 pt-lg-0 order-2 order-lg-1">

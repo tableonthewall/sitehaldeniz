@@ -3,10 +3,12 @@ package com.denizhal.site.service;
 import com.denizhal.site.model.Propose;
 import com.denizhal.site.repositories.ProposeRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class ProposeServiceImpl implements ProposeService {
     private final ProposeRepository proposeRepository;
 

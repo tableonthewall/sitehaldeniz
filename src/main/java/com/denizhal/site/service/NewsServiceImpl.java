@@ -7,11 +7,15 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+//Transactional ekledim
 @Service
+@Transactional
 public class NewsServiceImpl implements NewsService {
 
     private final NewsRepository newsRepository;

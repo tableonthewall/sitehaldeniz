@@ -74,6 +74,7 @@ public class NewsController {
             }catch (Exception e){
                 e.printStackTrace();
             }
+            System.out.println("update root:"+root.toUri());
             news.setFoto_url("/src/main/uploads/" +file.getOriginalFilename());
         }
         news.setUser(adminService.findUserByEmail(principal.getName()));

@@ -5,6 +5,7 @@ import com.denizhal.site.model.Product;
 import com.denizhal.site.repositories.ProductsRepository;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import org.springframework.core.io.Resource;
@@ -16,6 +17,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 @Service
+@Transactional
 public class FileServiceImpl implements FileService {
     private final Path root = Paths.get("src/main/uploads");
     private final ProductsRepository productsRepository;
@@ -27,12 +29,15 @@ public class FileServiceImpl implements FileService {
     @Override
     public void uploadFile(MultipartFile file, Path path) throws IOException {
         System.out.println(root);
+
         try {
+            System.out.println("path.toString: "+path.toString());
+            System.out.println("path.toURİ:"+path.toUri());
+            System.out.println("path. resolve:"+path.resolve(file.getOriginalFilename()).toString());
             Files.copy(file.getInputStream(), path.resolve(file.getOriginalFilename()));
         } catch (IOException e) {
             throw new IOException("Dosya yüklenemiyor " + e.getMessage());
         }
-
     }
 
     @Override

@@ -3,8 +3,10 @@ package com.denizhal.site.service;
 import com.denizhal.site.model.Kurumsal;
 import com.denizhal.site.repositories.KurumsalRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class KurumsalServiceImpl implements KurumsalService {
 
     private final KurumsalRepository kurumsalRepository;

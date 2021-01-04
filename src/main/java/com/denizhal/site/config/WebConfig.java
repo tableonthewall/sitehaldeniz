@@ -26,7 +26,7 @@ public class WebConfig implements WebMvcConfigurer {
     {
         registry.addViewController("/").setViewName("index");
         registry.addViewController("/login").setViewName("login");
-        registry.addViewController("/home").setViewName("user/home");
+        registry.addViewController("/home").setViewName("index");
         registry.addViewController("/haberler").setViewName("haberler");
         registry.addViewController("/admin").setViewName("admin/adminhome");
         registry.addViewController("/error").setViewName("error/");
@@ -50,9 +50,11 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         Path fileUploadDir = Paths.get("src/main/uploads");
         String fileUploadPath=fileUploadDir.toFile().getAbsolutePath();
+        System.out.println("webconfig fileUploadPath : "+fileUploadPath);
         Path demoDir=Paths.get("src/main/uploads/demo");
-        //changed for linux
-        registry.addResourceHandler("/src/main/uploads/**").addResourceLocations("file:/"+fileUploadPath+"/");
-        registry.addResourceHandler("/src/main/uploads/demo/**").addResourceLocations("file:/"+demoDir+"/");
+        ///changed for linux
+        registry.addResourceHandler("/src/main/uploads/**").addResourceLocations("file:///"+fileUploadPath+"/");
+        registry.addResourceHandler("/src/main/uploads/demo/**").addResourceLocations("file:///"+demoDir+"/");
+
     }
 }

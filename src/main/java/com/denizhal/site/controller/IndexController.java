@@ -21,8 +21,7 @@ import java.util.List;
 
 @Controller
 public class IndexController {
-    @Autowired
-    UserRepository userRepository;
+
 
     private final NewsServiceImpl newsService;
     private final KurumsalService kurumsalService;

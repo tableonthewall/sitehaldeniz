@@ -3,11 +3,13 @@ package com.denizhal.site.service;
 import com.denizhal.site.model.Role;
 import com.denizhal.site.repositories.RoleRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class RoleServiceImpl implements RoleService {
     private final RoleRepository roleRepository;
 

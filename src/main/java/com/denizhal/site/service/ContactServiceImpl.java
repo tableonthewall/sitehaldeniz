@@ -3,10 +3,12 @@ package com.denizhal.site.service;
 import com.denizhal.site.model.Contact;
 import com.denizhal.site.repositories.ContactRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class ContactServiceImpl implements ContactService{
     private final ContactRepository contactRepository;
 
