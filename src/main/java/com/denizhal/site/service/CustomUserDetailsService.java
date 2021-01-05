@@ -15,7 +15,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 @Service
-//@Transactional yoruma aldım
+@Transactional
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
