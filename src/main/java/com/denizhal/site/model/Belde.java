@@ -1,14 +1,20 @@
 package com.denizhal.site.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "belde")
 public class Belde {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Column
     private String BeldeAdi;
 
-    public Belde(Integer id, String ilAdi) {
-        this.id = id;
-        BeldeAdi = ilAdi;
-    }
-    public Belde(){};
+    @OneToOne(mappedBy = "belde")
+    private GenelBilgiler genelBilgiler;
+
+
 
     public Integer getId() {
         return id;
@@ -24,5 +30,13 @@ public class Belde {
 
     public void setBeldeAdi(String beldeAdi) {
         BeldeAdi = beldeAdi;
+    }
+
+    public GenelBilgiler getGenelBilgiler() {
+        return genelBilgiler;
+    }
+
+    public void setGenelBilgiler(GenelBilgiler genelBilgiler) {
+        this.genelBilgiler = genelBilgiler;
     }
 }

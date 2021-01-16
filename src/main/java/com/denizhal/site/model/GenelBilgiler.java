@@ -19,16 +19,20 @@ public class GenelBilgiler {
     @Column
     private VergiDurumu vergiDurumu;
 
-    @Column
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="ulke_id",referencedColumnName = "id")
     private Ulke ulkeKodu;
 
-    @Column
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="il_id",referencedColumnName = "id")
     private Sehir sehir;
 
-    @Column
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="ilce_id",referencedColumnName = "id")
     private Ilce ilce;
 
-    @Column
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="belde_id",referencedColumnName = "id")
     private Belde belde;
 
     @Column
@@ -46,7 +50,8 @@ public class GenelBilgiler {
     @Column
     private CalismaSekli calismaSekli;
 
-    @Column
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="grup_id",referencedColumnName = "id")
     private Grup grup;
 
     @Column

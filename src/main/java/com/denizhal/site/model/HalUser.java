@@ -36,6 +36,7 @@ public class HalUser {
     @Column
     private String vergiDairesi;
 
+    //OnetoOne relation genelBilgiler sınıfına ait id'yi kullanıyoruz.
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="genelBilgiler_id",referencedColumnName = "id")
     private GenelBilgiler genelBilgiler;

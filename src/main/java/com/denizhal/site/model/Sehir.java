@@ -1,14 +1,26 @@
 package com.denizhal.site.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "sehir")
 public class Sehir {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Column
     private String IlAdi;
 
-    public Sehir(Integer id, String ilAdi) {
-        this.id = id;
-        IlAdi = ilAdi;
+    @OneToOne(mappedBy = "sehir")
+    private GenelBilgiler genelBilgiler;
+
+    public GenelBilgiler getGenelBilgiler() {
+        return genelBilgiler;
     }
-    public Sehir(){};
+
+    public void setGenelBilgiler(GenelBilgiler genelBilgiler) {
+        this.genelBilgiler = genelBilgiler;
+    }
 
     public Integer getId() {
         return id;
