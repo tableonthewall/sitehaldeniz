@@ -5,7 +5,6 @@ import com.denizhal.site.service.AdminService;
 import com.denizhal.site.service.FileService;
 import com.denizhal.site.service.NewsService;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,8 +34,6 @@ public class NewsController {
         return "news/listNews";
     }
 
-
-
     @GetMapping("/new")
     public String saveNews(Model model){
        model.addAttribute("news",new News());
@@ -61,13 +58,13 @@ public class NewsController {
     }
 
     @GetMapping("/{id}/delete")
-    public String deleteNews(@PathVariable String id,Model model){
+    public String deleteNews(@PathVariable String id){
         newsService.delete(Integer.valueOf(id));
         return "redirect:/news";
     }
     //Eğer gönderdiğim fotoğraf değiştirilmiyor ise yani file empty ise if çalışmadan diğer kısımlar güncellenir.
     @PostMapping("/update")
-    public String handlingUpdate(@RequestParam MultipartFile file,@ModelAttribute News news,Principal principal,Model model){
+    public String handlingUpdate(@RequestParam MultipartFile file,@ModelAttribute News news,Principal principal){
         if(!file.isEmpty()){
             Path root = Paths.get("src/main/uploads");
             try {
@@ -75,7 +72,7 @@ public class NewsController {
             }catch (Exception e){
                 e.printStackTrace();
             }
-            System.out.println("update root:"+root.toUri());
+            //System.out.println("update root:"+root.toUri());
             news.setFoto_url("/src/main/uploads/" +file.getOriginalFilename());
         }
         news.setUser(adminService.findUserByEmail(principal.getName()));
@@ -85,7 +82,7 @@ public class NewsController {
 
     @PostMapping("/new")
     public String handlingSaveNews(@RequestParam MultipartFile file, @ModelAttribute News news,
-                                   Principal principal, Model model){
+                                   Principal principal){
         Path root = Paths.get("src/main/uploads");
         try {
             fileService.uploadFile(file,root);

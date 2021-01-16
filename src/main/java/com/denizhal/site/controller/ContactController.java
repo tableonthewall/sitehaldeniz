@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @Controller
 @RequestMapping("/contact")
 public class ContactController {
+
     private final ContactService contactService;
 
     public ContactController(ContactService contactService) {
@@ -26,15 +27,12 @@ public class ContactController {
     }
 
     @PostMapping("/new")
-    public String newContact(@Valid @ModelAttribute("iletisim")Contact iletisim, BindingResult bindingResult, Model model){
+    public String newContact(@Valid @ModelAttribute("iletisim")Contact iletisim, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-
             return "/iletisim";
         }
-
         iletisim.setSavedate(LocalDate.now());
         contactService.save(iletisim);
-
         return "redirect:/iletisim?success";
     }
 }

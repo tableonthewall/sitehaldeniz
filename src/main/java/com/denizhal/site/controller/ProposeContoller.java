@@ -1,17 +1,17 @@
 package com.denizhal.site.controller;
 
-import com.denizhal.site.model.Product;
 import com.denizhal.site.model.Propose;
 import com.denizhal.site.service.ProductsService;
 import com.denizhal.site.service.ProposeService;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.util.List;
+
 
 @Controller
 @RequestMapping("/propose")
@@ -41,7 +41,7 @@ public class ProposeContoller {
         model.addAttribute("proposes",proposeService.getProposesByProductId(id));
         return "proposes/listAll";
     }
-
+    //silme işlemi
     @GetMapping("/{productid}/delete/{proposeid}")
     public String deletePropose(@PathVariable int productid,@PathVariable int proposeid){
         proposeService.delete(proposeid);
@@ -50,6 +50,7 @@ public class ProposeContoller {
 
     //yeni teklifi kaydetme
     @PostMapping("/yeniteklif")
+    @Transactional //Yeni güncelleme
     public String yeniTeklif(@Valid @ModelAttribute("propose") Propose propose ,BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
