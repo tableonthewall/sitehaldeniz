@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/hallayout :: layout (~{::body},'hal')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Yönetici</title>
+
+</head>
+<body>
+
+<div id="page-content-wrapper">
+    <div class="card bg-light mb-3">
+        <div class="card-header">
+            <div class="row" style="margin-top:1em;">
+                <div class="col-md-10">
+                    <h1 class="card-title" th:text="'Kullanıcı Bilgileri'">Kullanıcılar</h1>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Kullanıcı Adı</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary" th:text="${user.email}">
+                                Kenneth Valdez
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Adı</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary" th:text="${user.firstname}">
+                                fip@jukmuh.al
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Soyadı</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary" th:text="${user.lastname}">
+                                (239) 816-9029
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

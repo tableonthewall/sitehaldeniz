@@ -15,8 +15,12 @@
     <meta content="Hal Otomasyon Programı" name="description">
     <title>Deniz Hal</title>
 
-    <!-- Bootstrap CSS File -->
+    <!-- Bootstrap CSS File
     <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    -->
+    <!-- DataTables -->
+    <link th:href="@{/vendor/datatable/bootstrap.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/vendor/datatable/dataTables.bootstrap4.min.css}" rel="stylesheet" type="text/css"/>
     <!-- Libraries CSS Files -->
     <link th:href="@{/lib/font-awesome/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/lib/animate/animate.min.css}" rel="stylesheet" type="text/css"/>
@@ -103,6 +107,7 @@
                 <div class="sidebar-heading" sec:authentication="principal.username"> </div>
                 <div class="list-group list-group-flush">
                     <a th:href="@{/user}" class="list-group-item list-group-item-action bg-light">Kullanıcı Paneli</a>
+                    <a th:href="@{/hal/cari/cariList}" class="list-group-item list-group-item-action bg-light">Cari İşlemleri</a>
                     <!--
                     <a th:href="@{/user/download}" class="list-group-item list-group-item-action bg-light">İndir</a>
                     -->
@@ -160,6 +165,7 @@
 <!-- JavaScript Libraries -->
 <script th:src="@{/vendor/jquery/jquery.js}"></script>
 <script th:src="@{/lib/jquery/jquery-migrate.min.js}"></script>
+
 <script th:src="@{/lib/easing/easing.min.js}"></script>
 <script th:src="@{/lib/mobile-nav/mobile-nav.js}"></script>
 <script th:src="@{/lib/wow/wow.min.js}"></script>
@@ -173,8 +179,14 @@
 
 <!-- Template Main Javascript File -->
 <script th:src="@{/js/main.js}"></script>
-<!-- Bootstrap core JavaScript -->
+<!-- Bootstrap core JavaScript
 <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+ -->
+<!-- Datatables -->
+
+<script th:src="@{/vendor/datatable/js/jquery.dataTables.min.js}"></script>
+<script th:src="@{/vendor/datatable/js/dataTables.bootstrap4.min.js}"></script>
+
 <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
 <!-- Menu Toggle Script -->
@@ -184,6 +196,15 @@
                   $("#wrapper").toggleClass("toggled");
                 });
             </script>
+<script>
+
+    $('#caritable').DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+        }
+    } );
+
+</script>
 
 </body>
 </html>

@@ -31,6 +31,7 @@ public class NewsController {
     @GetMapping
     public String listNews(Model model){
         model.addAttribute("news",newsService.getNews());
+        System.out.println(newsService.getNews().get(1).getUser().getFirstname());
         return "news/listNews";
     }
 

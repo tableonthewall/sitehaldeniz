@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/hallayout :: layout (~{::body},'cariList')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Yönetici</title>
+
+</head>
+<body>
+<div id="page-content-wrapper">
+    <div class="card bg-light mb-3">
+        <div class="card-header">
+            <div class="row" style="margin-top:1em;">
+                <div class="col-md-9">
+                    <h1 class="card-title">Cari Listesi</h1>
+                </div>
+                <div class="col-md-1">
+                    <a class="btn btn-primary" href="#" th:href="@{'/admin/roles/new'}" role="button">Ekle</a>
+                </div>
+                <div class="col-md-1">
+                    <a class="btn btn-primary" href="#" th:href="@{'/admin/roles/new'}" role="button">Güncelle</a>
+                </div>
+                <div class="col-md-1">
+                    <a class="btn btn-primary" href="#" th:href="@{'/admin/roles/new'}" role="button">Sil</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered" id="caritable">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>ID</th>
+                        <th>Cari Türü</th>
+                        <th>Cari Kodu</th>
+                        <th>Adı Soyadı</th>
+                        <th>Ticari Ünvanı</th>
+                        <th>TC Kimlik No</th>
+                        <th>Vergi No</th>
+                        <th>Vergi Dairesi</th>
+                        <th>Sil</th>
+                    </tr>
+                    </thead>
+                    <tr th:each="cari : ${cariList}">
+                        <td th:text="${cari.id}">334</td>
+                        <td th:text="${cari.halRole.name}">334</td>
+                        <td th:text="${cari.musteriKodu}">334</td>
+                        <td th:text="${cari.adi+' '+cari.soyadi}">334</td>
+                        <td th:text="${cari.ticariUnvan}">334</td>
+                        <td th:text="${cari.tcKimlikNo}">334</td>
+                        <td th:text="${cari.vergiNo}">334</td>
+                        <td th:text="${cari.vergiDairesi}">334</td>
+                        <th><button class="btn"><i class="fa fa-trash"></i> Sil</button></th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->
+
+
+
+</body>
+</html>
