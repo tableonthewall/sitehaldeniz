@@ -32,4 +32,68 @@ public class HalUserServiceImpl implements HalUserService {
     public List<HalUser> getAllHalUsers() {
         return halUserRepository.findAll();
     }
+
+    @Override
+    public List<HalUser> getAllHalUsersByUserId(Integer id) {
+        return halUserRepository.findAllByUserId(id);
+    }
+
+    @Override
+    public HalUser getLastUserByHalRoleId(Integer id) {
+        //List<HalUser> getAllUsersByHalRoleId=halUserRepository.findByHalRoleIdOrderByIdDesc(id);
+        Optional<HalUser> optionalHalUser=halUserRepository.findTopByHalRoleIdOrderByIdDesc(id);
+        System.out.println("adi :"+optionalHalUser.get().getAdi());
+        HalUser halUser=new HalUser();
+        if(!optionalHalUser.isPresent()){
+            log.error("Son hal kullanıcısı bulunamıştır : "+id);
+            halUser.setMusteriKodu(1);
+        }
+        halUser=optionalHalUser.get();
+        return halUser;
+    }
+
+    @Override
+    public HalUser getLastUserByIdAndHalRoleId(Integer userId, Integer halRoleId) {
+        Optional<HalUser> optionalHalUser=halUserRepository.findTopByUserIdAndHalRoleIdOrderByIdDesc(userId,halRoleId);
+
+
+        HalUser halUser=new HalUser();
+        if(!optionalHalUser.isPresent()){
+            System.out.println("kullanıcı bulunamadı");
+            log.error("Kullanıcıya ait son hal kullanıcısı bulunamadı");
+            return new HalUser();
+
+        }
+        //System.out.println("adi :"+optionalHalUser.get().getAdi());
+        halUser=optionalHalUser.get();
+        return halUser;
+    }
+
+    @Override
+    public HalUser getHalUserByUserIdAndMusteriKodu(Integer userId, Integer musteriKodu) {
+        Optional<HalUser> optionalHalUser=halUserRepository.findByUserIdAndMusteriKodu(userId,musteriKodu);
+        HalUser halUser=new HalUser();
+        if(!optionalHalUser.isPresent()){
+            log.error("Kullanıcıya ait hal kullanıcısı bulunamamıştır.");
+        }
+        halUser=optionalHalUser.get();
+        return halUser;
+    }
+
+    @Override
+    public HalUser getHalUserByUserIdAndMusteriKoduAndHalRoleId(Integer userId, Integer musteriKodu, Integer halRoleId) {
+        return halUserRepository.findByUserIdAndMusteriKoduAndHalRoleId(userId,musteriKodu,halRoleId).get();
+    }
+
+    @Override
+    public boolean chechUniqueTcAndUser(Integer userId, String tc) {
+        return halUserRepository.existsByUserIdAndTcKimlikNo(userId,tc);
+
+    }
+
+    @Override
+    public void save(HalUser halUser) {
+        halUserRepository.save(halUser);
+    }
+
 }

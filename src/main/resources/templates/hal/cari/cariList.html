@@ -10,17 +10,11 @@
     <div class="card bg-light mb-3">
         <div class="card-header">
             <div class="row" style="margin-top:1em;">
-                <div class="col-md-9">
+                <div class="col-md-10">
                     <h1 class="card-title">Cari Listesi</h1>
                 </div>
-                <div class="col-md-1">
-                    <a class="btn btn-primary" href="#" th:href="@{'/admin/roles/new'}" role="button">Ekle</a>
-                </div>
-                <div class="col-md-1">
-                    <a class="btn btn-primary" href="#" th:href="@{'/admin/roles/new'}" role="button">Güncelle</a>
-                </div>
-                <div class="col-md-1">
-                    <a class="btn btn-primary" href="#" th:href="@{'/admin/roles/new'}" role="button">Sil</a>
+                <div class="col-md-2">
+                    <a class="btn btn-primary btn-ekle add-cari" href="#" th:href="@{'/hal/cari/add'}" role="button">Cari Ekle</a>
                 </div>
             </div>
 
@@ -38,6 +32,7 @@
                         <th>TC Kimlik No</th>
                         <th>Vergi No</th>
                         <th>Vergi Dairesi</th>
+                        <th>Düzenle</th>
                         <th>Sil</th>
                     </tr>
                     </thead>
@@ -50,7 +45,9 @@
                         <td th:text="${cari.tcKimlikNo}">334</td>
                         <td th:text="${cari.vergiNo}">334</td>
                         <td th:text="${cari.vergiDairesi}">334</td>
-                        <th><button class="btn"><i class="fa fa-trash"></i> Sil</button></th>
+                        <th><a class="btn btn-primary update-cari" href="#" th:href="@{'/hal/'+${user.id}+'/cari/' + ${cari.musteriKodu} +'/'+ ${cari.halRole.id}+'/update'}" role="button"><i class="fa fa-edit"> Güncelle</i></a></th>
+                        <th><button class="btn"><i class="fa fa-trash"> Sil</i></button></th>
+
                     </tr>
                 </table>
             </div>
@@ -58,6 +55,24 @@
     </div>
 </div>
 <!-- /#page-content-wrapper -->
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="updateModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+
+
 
 
 

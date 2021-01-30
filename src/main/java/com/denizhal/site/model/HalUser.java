@@ -1,7 +1,10 @@
 package com.denizhal.site.model;
 
+import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -16,7 +19,8 @@ public class HalUser {
     private String ticariUnvan;
 
     @Column(nullable = false)
-    @NotEmpty
+    @NotNull(message= "müşteri kod boş olamaz")
+    @Range(min = 1)
     private int musteriKodu;
 
     @Column(nullable = false)
@@ -27,7 +31,8 @@ public class HalUser {
     @NotEmpty
     private String soyadi;
 
-    @Column
+    @Column(nullable=false, unique=true)
+    @NotEmpty
     private String tcKimlikNo;
 
     @Column
@@ -41,7 +46,7 @@ public class HalUser {
     @JoinColumn(name="genelBilgiler_id",referencedColumnName = "id")
     private GenelBilgiler genelBilgiler;
 
-    //Bu kısım programı kullanan halci ile (mustahsil ve müşterileri birbirine bağladığımız kısım.
+    //Bu kısım programı kullanan halci ile (mustahsil ve müşterileri) birbirine bağladığımız kısım.
     @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @JoinColumn(name="user_id",nullable = false)
     private User user;

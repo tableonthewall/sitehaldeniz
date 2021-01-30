@@ -1,0 +1,126 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modalTitle">Cari Güncelle</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+
+
+<div id="page-content-wrapper">
+    <div class="card bg-light mb-3">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 col-md-offset-3">
+                    <!--/*@thymesVar id="ingredient" type="guru.springframework.commands.IngredientCommand"*/-->
+                    <form  th:object="${halUser}" th:action="@{'/hal/cari/update'}" method="post" onsubmit="return checkUniqueTcUpdate(this)">
+                        <div class="alert alert-danger" role="alert">
+                            <p>Bu kullanıcı daha önce eklenmiştir.</p>
+                        </div>
+                        <input type="hidden" th:field="*{User}"/>
+                        <input type="hidden" th:field="*{id}"/>
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3 form-group">
+                                <label>Cari Türü</label>
+                                <select class="form-control" name="halRoleId" id="halRoleSelect" th:field="*{halRole}">
+                                    <option th:each="halRole : ${halRoles}"
+                                            th:value="${halRole.id}"
+                                            th:selected="${halRole.id.equals(halUser.HalRole.id)}"
+                                            th:text="${halRole.name}">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3 form-group">
+                                <label>Müşteri Kodu</label>
+                                <input id="musteriKodu" type="text" class="form-control" th:field="*{musteriKodu}" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label>Ticari Ünvan</label>
+                                <input type="text" class="form-control" th:field="*{ticariUnvan}"/>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>TC Kimlik No</label>
+                                <input id="tcKimlik" type="text" class="form-control" th:field="*{tcKimlikNo}"/>
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label>Adı</label>
+                                <input type="text" class="form-control" th:field="*{adi}"/>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Vergi No</label>
+                                <input type="text" class="form-control" th:field="*{vergiNo}"/>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label>Soyadı</label>
+                                <input type="text" class="form-control" th:field="*{soyadi}"/>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Vergi Dairesi</label>
+                                <input type="text" class="form-control" th:field="*{vergiDairesi}"/>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+            $(".alert").hide();
+    });
+
+<!--
+    function getMusteriId(){
+        userId=[[${halUser.getUser().getId()}]];
+        halUserRole=$("#halRoleSelect").val();
+        url="[[@{'/hal/'}]]"+userId+"/"+halUserRole+"/musteriid";
+        $.get(url,function(response){
+            $("#musteriKodu").val(response);
+        }).fail(function(){
+              alert("Server'a bağlanamadı."+halRoleId);
+            });
+
+    }
+-->
+    function checkUniqueTcUpdate(form){
+        userId=[[${halUser.getUser().getId()}]];
+        halRoleId=[[${halUser.halRole.id}]];
+        musteriKodu=$("#musteriKodu").val();
+        tcKimlikNo=$("#tcKimlik").val();
+        url="[[@{'/hal/chechtcupdate'}]]";
+        csrfValue=$("input[name=_csrf]").val();
+        params={id:userId,tckimlik:tcKimlikNo,musteriKodu:musteriKodu,halRoleId:halRoleId,_csrf:csrfValue};
+
+        $.post(url,params, function(response){
+            <!--Buraya gelen response a göre form.submit() gelecek... and so on -->
+            if (response == "OK") {
+                form.submit();
+            }else if (response == "Dublicated") {
+                $(".alert").show();
+                window.setTimeout(function() {
+                        $(".alert").alert('close');},3000);
+            }else if(response=="NULLTC"){
+                $(".alert").html("<p>TC Kimlik Numarası alanı boş.</p>");
+                $(".alert").show();
+                window.setTimeout(function() {
+                        $(".alert").alert('close');},3000);
+            }else {
+                alert("Bilinmeyen hata ile karşılaşıldı");
+            }
+        }).fail(function(){
+            alert("Veri tabanına bağlanamıyor");
+        });
+        return false;
+    }
+</script>

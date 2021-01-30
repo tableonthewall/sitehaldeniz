@@ -5,6 +5,7 @@ import com.denizhal.site.repositories.HalRoleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -24,5 +25,10 @@ public class HalRoleServiceImpl implements HalRoleService {
         }
         HalRole halRole=optionalHalRole.get();
         return halRole;
+    }
+
+    @Override
+    public List<HalRole> getHalRoles() {
+        return halRoleRepository.findAll();
     }
 }
