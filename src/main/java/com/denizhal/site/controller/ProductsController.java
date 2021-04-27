@@ -5,6 +5,7 @@ import com.denizhal.site.service.FileService;
 import com.denizhal.site.service.ProductsService;
 import com.denizhal.site.service.ProposeService;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,6 +39,7 @@ public class ProductsController {
     }
 
     @GetMapping("/{id}/show")
+    @Transactional //new update
     public String showProduct(@PathVariable int id,Model model){
         Product product=productsService.getProduct(id);
         product.setProposes(proposeService.getProposesByProductId(product.getId()));
@@ -59,6 +61,7 @@ public class ProductsController {
     }
 
     @PostMapping("/update")
+    @Transactional //new update
     public String handlingUpdate(@RequestParam MultipartFile demolink, @RequestParam MultipartFile applink,
                                  @ModelAttribute Product product){
         if(!demolink.isEmpty()){
@@ -87,6 +90,7 @@ public class ProductsController {
 
     }
     @PostMapping("/new")
+    @Transactional
     public String handlingNewProduct(@RequestParam MultipartFile demolink, @RequestParam MultipartFile applink,
                                      @ModelAttribute Product product){
         Path demopath = Paths.get("src/main/uploads/demo");

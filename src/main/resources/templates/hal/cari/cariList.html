@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/hallayout :: layout (~{::body},'cariList')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Yönetici</title>
+
+</head>
+<body>
+<div id="page-content-wrapper">
+    <div class="card bg-light mb-3">
+        <div class="card-header">
+            <div class="row" style="margin-top:1em;">
+                <div class="col-md-10">
+                    <h1 class="card-title">Cari Listesi</h1>
+                    <div th:if="${param.success}">
+                        <div class="alert alert-info">Yeni cari hesabı başarılı olarak eklenmiştir.</div>
+                    </div>
+                    <div th:if="${param.successUpdate}">
+                        <div class="alert alert-info">Cari hesabı başarılı olarak güncellenmiştir.</div>
+                    </div>
+                    <div th:if="${param.successDelete}">
+                        <div class="alert alert-danger">Cari hesabı silme işlemi başarılı.</div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary btn-ekle add-cari" href="#" th:href="@{'/hal/cari/add'}" role="button">Cari Ekle</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered" id="caritable">
+                    <thead class="thead-inverse">
+                    <tr>
+                        <th>ID</th>
+                        <th>Cari Türü</th>
+                        <th>Cari Kodu</th>
+                        <th>Adı Soyadı</th>
+                        <th>Ticari Ünvanı</th>
+                        <th>TC Kimlik No</th>
+                        <th>Vergi No</th>
+                        <th>Vergi Dairesi</th>
+                        <th>Düzenle</th>
+                        <th>Sil</th>
+                    </tr>
+                    </thead>
+                    <tr th:each="cari : ${cariList}">
+                        <td th:text="${cari.id}">334</td>
+                        <td th:text="${cari.halRole.name}">334</td>
+                        <td th:text="${cari.musteriKodu}">334</td>
+                        <td th:text="${cari.adi+' '+cari.soyadi}">334</td>
+                        <td th:text="${cari.ticariUnvan}">334</td>
+                        <td th:text="${cari.tcKimlikNo}">334</td>
+                        <td th:text="${cari.vergiNo}">334</td>
+                        <td th:text="${cari.vergiDairesi}">334</td>
+                        <th><a class="btn btn-primary update-cari" href="#" th:href="@{'/hal/'+${user.id}+'/cari/' + ${cari.musteriKodu} +'/'+ ${cari.halRole.id}+'/update'}" role="button"><i class="fa fa-edit"> Güncelle</i></a></th>
+                        <th><a class="btn btn-danger delete-cari" id="deleteButton" href="#" th:href="@{'/hal/'+${user.id}+'/'+${cari.id}+'/delete'}" role="button"><i class="fa fa-trash"> Sil</i></a></th>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="updateModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" id="deleteModal" data-dismiss="modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modalTitle">Cari Bilgilerini Sil</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Bu kullanıcıyı silmek istediğinize emin misiniz?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="" class="btn btn-primary" id="delRef">Evet</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

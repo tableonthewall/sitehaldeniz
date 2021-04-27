@@ -10,9 +10,9 @@
 
     <link rel="shortcut icon" type="image/x-icon" th:href="@{/images/favicon.png}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
-    <title>Deniz Hal Otomasyon</title>
-    <meta content="Hal Otomasyon Programları" name="keywords">
-    <meta content="Dijital Dönüşüm" name="description">
+    <title>Deniz Hal Yazılımı</title>
+    <meta content="Hal Yazılımı" name="keywords">
+    <meta content="Hal Otomasyon Programı" name="description">
     <title>Deniz Hal</title>
 
     <!-- Bootstrap CSS File -->
@@ -86,6 +86,7 @@
 
                         <li sec:authorize="hasRole('ROLE_ADMIN')" th:replace="::menuItem ('/admin','admin','Admin','Admin Sayfası')"><a href="#">Drop Down 3</a></li>
                         <li sec:authorize="hasRole('ROLE_USER')" th:replace="::menuItem ('/user','user','User','Kullanıcı Paneli')"><a href="#">Drop Down 3</a></li>
+                        <li sec:authorize="hasRole('ROLE_HAL')" th:replace="::menuItem ('/hal','hal','Hal','Hal Paneli')"><a href="#">Drop Down 3</a></li>
                         <li sec:authorize="isAuthenticated()" th:replace="::menuItem ('/logout','logout','Çıkış','Çıkış')"><a href="#">Drop Down 4</a></li>
                     </ul>
                 </li>

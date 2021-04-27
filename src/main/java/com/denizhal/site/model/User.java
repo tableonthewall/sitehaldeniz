@@ -4,7 +4,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -49,6 +48,16 @@ public class User {
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<News> news;
 
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<HalUser> halUser;
+
+    public List<HalUser> getHalUser() {
+        return halUser;
+    }
+
+    public void setHalUser(List<HalUser> halUser) {
+        this.halUser = halUser;
+    }
 
     public Integer getId() {
         return id;

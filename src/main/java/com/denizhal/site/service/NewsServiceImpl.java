@@ -2,6 +2,7 @@ package com.denizhal.site.service;
 
 import com.denizhal.site.model.News;
 import com.denizhal.site.repositories.NewsRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -12,8 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 //Transactional ekledim
+@Slf4j
 @Service
 @Transactional
 public class NewsServiceImpl implements NewsService {
@@ -32,7 +35,7 @@ public class NewsServiceImpl implements NewsService {
                 haber.setDetails(haber.getDetails().substring(0,30));
             }
 
-            System.out.println("tarih: "+haber.getSavedate()+" format: "+haber.getSavedate().getClass());
+            //System.out.println("tarih: "+haber.getSavedate()+" format: "+haber.getSavedate().getClass());
         }
         return haberler;
     }
@@ -85,14 +88,20 @@ public class NewsServiceImpl implements NewsService {
     }
 
     public void ziyaretciArttir(Integer id){
-        News news=newsRepository.findById(id).get();
+        //Alttaki metottan çağırıyorum.
+        News news=getNew(id);
         news.setZiyaret(news.getZiyaret()+1);
         this.save(news);
     }
 
     @Override
     public News getNew(Integer id) {
-        News news=newsRepository.findById(id).get();
+        Optional<News> optionalNews=newsRepository.findById(id);
+        if(!optionalNews.isPresent()){
+            log.error("Haber bilgisine ulaşılamadı :"+id);
+        }
+
+        News news=optionalNews.get();
           /* Bir string ifadenin içinde bir \n ifadesini <br> ile değiştiren metot
         StringBuffer text=new StringBuffer(news.getDetails());
         int say=(new String(text)).indexOf('\n');

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.asesyazilim.com/update/versiyonupdate.xml">
+  <xs:element name="Project_Update" type="Project_UpdateType"/>
+  <xs:complexType name="DENIZHALType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="version"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ASESHKType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="version"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Project_UpdateType">
+    <xs:sequence>
+      <xs:element type="DENIZHALType" name="DENIZHAL"/>
+      <xs:element type="ASESHKType" name="ASESHK"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -27,7 +27,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         //1) user2.orElseThrow(()-> new UsernameNotFoundException("Kullanıcı bulunamadı."));
         User user=userRepository.findByEmail(username)
                 .orElseThrow(()-> new UsernameNotFoundException("Email "+username+" kullanıcı bulunamamıştır."));
-        System.out.println("bulduğum email : "+user.getEmail()+" "+user.getFirstname()+" "+user.getRoles());
+        //System.out.println("bulduğum email : "+user.getEmail()+" "+user.getFirstname()+" "+user.getRoles());
         return new org.springframework.security.core.userdetails.User(user.getEmail(),user.getPassword(),getAuthorities(user));
         //return user2.map(AuthenticatedUser::new).get();
     }

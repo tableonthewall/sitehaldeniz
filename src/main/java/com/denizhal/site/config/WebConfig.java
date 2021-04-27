@@ -50,7 +50,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         Path fileUploadDir = Paths.get("src/main/uploads");
         String fileUploadPath=fileUploadDir.toFile().getAbsolutePath();
-        System.out.println("webconfig fileUploadPath : "+fileUploadPath);
+        //System.out.println("webconfig fileUploadPath : "+fileUploadPath);
         Path demoDir=Paths.get("src/main/uploads/demo");
         ///changed for linux
         registry.addResourceHandler("/src/main/uploads/**").addResourceLocations("file:///"+fileUploadPath+"/");

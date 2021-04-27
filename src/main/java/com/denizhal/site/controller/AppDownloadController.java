@@ -24,22 +24,22 @@ import java.nio.file.Paths;
 @RestController
 @RequestMapping(path="/app")
 public class AppDownloadController {
-    private final ProductsRepository productsRepository;
+
     private final ProductsService productsService;
     private final FileService fileService;
 
     private static final Logger logger = LoggerFactory.getLogger(AppDownloadController.class);
 
 
-    public AppDownloadController(ProductsRepository productsRepository, ProductsService productsService, FileService fileService) {
-        this.productsRepository = productsRepository;
+    public AppDownloadController(ProductsService productsService, FileService fileService) {
+
         this.productsService = productsService;
         this.fileService = fileService;
     }
 
     @GetMapping(path = "/version",produces = "application/json")
     public String handleVersion(){
-        Product product=productsRepository.findFirstByOrderByIdDesc();
+        Product product=productsService.getLastProduct();
         return product.getVersion();
     }
 
@@ -47,7 +47,7 @@ public class AppDownloadController {
     public ResponseEntity<Resource> downloadFile(HttpServletRequest request) {
         System.out.println("istek geldi");
 
-        String filename=productsRepository.findFirstByOrderByIdDesc().getApp_link();
+        String filename=productsService.getLastProduct().getApp_link();
         //linux
         System.out.println(filename);
         int i=filename.lastIndexOf("//");

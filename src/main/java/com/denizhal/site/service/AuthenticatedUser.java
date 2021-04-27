@@ -33,7 +33,7 @@ public class AuthenticatedUser extends org.springframework.security.core.userdet
         for (Role role : roles)
         {
             roleAndPermissions.add(role.getName());
-            System.out.println(role.getName());
+            //System.out.println(role.getName());
         }
         String[] roleNames = new String[roleAndPermissions.size()];
         Collection<GrantedAuthority> authorities = AuthorityUtils.createAuthorityList(roleAndPermissions.toArray(roleNames));
