@@ -9,19 +9,19 @@ create table if not exists persistent_logins (
 
 
 
-<!--INSERT INTO roles ( name) VALUES
+INSERT INTO roles ( name) VALUES
 ('ROLE_ADMIN'),
 ('ROLE_KOMISYONCU'),
 ('ROLE_USER');
 
-<--INSERT INTO users (email, password, firstname ,lastname) VALUES
+INSERT INTO users (email, password, firstname ,lastname) VALUES
 ('faruksengoz@denizhal.com', '$2a$10$hKDVYxLefVHV/vtuPhWD3OigtRyOykRLDdUAp80Z1crSoS1lFqaFS', 'Faruk' ,'Şengöz'),
 ('seydaozdemir@denizhal.com', '$2a$10$ByIUiNaRfBKSV6urZoBBxe4UbJ/sS6u1ZaPORHF9AtNWAuVPVz1by', 'Seyda' ,'Özdemir'),
 ('appdownload@denizhal.com', '$2a$10$ByIUiNaRfBKSV6urZoBBxe4UbJ/sS6u1ZaPORHF9AtNWAuVPVz1by', 'App' ,'Download');
 
 
 
-<--insert into user_role(user_id, role_id) values
+insert into user_role(user_id, role_id) values
 (1,1),
 (1,2),
 (1,3),

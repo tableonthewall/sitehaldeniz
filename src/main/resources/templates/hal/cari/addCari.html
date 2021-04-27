@@ -2,75 +2,225 @@
     <h4 class="modal-title" id="modalTitle">Yeni Cari Ekle</h4>
     <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
-
-
+<form  th:object="${halUser}" th:action="@{'/hal/cari/new'}" method="post" onsubmit="return checkUniqueTc(this)">
 <div id="page-content-wrapper">
-    <div class="card bg-light mb-3">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-12 col-md-offset-3">
-                    <!--/*@thymesVar id="ingredient" type="guru.springframework.commands.IngredientCommand"*/-->
-                    <form  th:object="${halUser}" th:action="@{'/hal/cari/new'}" method="post" onsubmit="return checkUniqueTc(this)">
-                        <div class="alert alert-danger" role="alert">
-                            <p>Bu kullanıcı daha önce eklenmiştir.</p>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="temel-tab" data-toggle="tab" href="#temel" role="tab" aria-controls="home"
+               aria-selected="true">Cari Ekle</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#genel" role="tab" aria-controls="profile"
+               aria-selected="false">Genel Bilgiler</a>
+        </li>
+    </ul>
+    <!--<form  th:object="${halUser}" th:action="@{'/hal/cari/new'}" method="post" onsubmit="return checkUniqueTc(this)">-->
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="temel" role="tabpanel" aria-labelledby="temel-tab">
+            <div class="card bg-light mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 col-md-offset-3">
+                            <!--/*@thymesVar id="ingredient" type="guru.springframework.commands.IngredientCommand"*/-->
+
+                                <div class="alert alert-danger" role="alert">
+                                    <p>Bu kullanıcı daha önce eklenmiştir.</p>
+                                </div>
+                                <input type="hidden" th:field="*{User}"/>
+                                <div class="form-row">
+                                    <div class="col-md-6 mb-3 form-group">
+                                        <label>Cari Türü</label>
+                                        <select class="form-control" name="halRoleId" id="halRoleSelect" th:field="*{halRole}">
+                                            <option th:each="halRole : ${halRoles}"
+                                                    th:value="${halRole.id}"
+                                                    th:text="${halRole.name}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3 form-group">
+                                        <label>Müşteri Kodu</label>
+                                        <input id="musteriKodu" type="text" class="form-control" th:field="*{musteriKodu}" />
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 form-group">
+                                        <label>Ticari Ünvan</label>
+                                        <input type="text" class="form-control" th:field="*{ticariUnvan}"/>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label>TC Kimlik No</label>
+                                        <input id="tcKimlik" type="text" class="form-control" th:field="*{tcKimlikNo}"/>
+                                    </div>
+
+                                </div>
+                                <div class="form-row">
+                                    <div class="col-md-6 form-group">
+                                        <label>Adı</label>
+                                        <input type="text" class="form-control" th:field="*{adi}"/>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <label>Vergi No</label>
+                                        <input type="text" class="form-control" th:field="*{vergiNo}"/>
+                                    </div>
+                                </div>
+                            <div class="form-row">
+                                <div class="col-md-6 form-group">
+                                    <label>Soyadı</label>
+                                    <input type="text" class="form-control" th:field="*{soyadi}"/>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label>Vergi Dairesi</label>
+                                    <input type="text" class="form-control" th:field="*{vergiDairesi}"/>
+                                </div>
+                            </div>
                         </div>
-                        <input type="hidden" th:field="*{User}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="genel" role="tabpanel" aria-labelledby="genel-tab">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 col-md-offset-3">
+                        <!--BURADAN DEVAM EDECEĞİM GENEL BİLGİLER NESNESİNİ EKLEYECEĞİM-->
                         <div class="form-row">
-                            <div class="col-md-6 mb-3 form-group">
-                                <label>Cari Türü</label>
-                                <select class="form-control" name="halRoleId" id="halRoleSelect" th:field="*{halRole}">
-                                    <option th:each="halRole : ${halRoles}"
-                                            th:value="${halRole.id}"
-                                            th:text="${halRole.name}">
+                            <div class="col-md-6 form-group">
+                                <label>Sıfatı</label>
+                                <select class="form-control" name="sifati" th:field="*{genelBilgiler.sifati}" >
+                                    <option th:each="sifati : ${T(com.denizhal.site.model.Sifati).values()}"
+                                            th:value="${sifati}" th:text="${sifati}"></option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Vergi Türü</label>
+                                <select class="form-control" name="vergiTuru" th:field="*{genelBilgiler.vergiTuru}" >
+                                    <option th:each="vergi : ${T(com.denizhal.site.model.VergiTuru).values()}"
+                                            th:value="${vergi}" th:text="${vergi}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label>Vergi Durumu</label>
+                                <select class="form-control" name="vergiDurumu" th:field="*{genelBilgiler.vergiDurumu}" >
+                                    <option th:each="vergidurumu : ${T(com.denizhal.site.model.VergiDurumu).values()}"
+                                            th:value="${vergidurumu}" th:text="${vergidurumu}"></option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Ülke Kodu</label>
+                                <select class="form-control" name="ulkeId" id="ulkeKodu" th:field="*{genelBilgiler.ulkeKodu}">
+                                    <option th:each="ulke : ${ulkeler}"
+                                            th:value="${ulke.id}"
+                                            th:text="${ulke.UlkeAdi}">
                                     </option>
                                 </select>
                             </div>
-                            <div class="col-md-6 mb-3 form-group">
-                                <label>Müşteri Kodu</label>
-                                <input id="musteriKodu" type="text" class="form-control" th:field="*{musteriKodu}" />
-                            </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-6 form-group">
-                                <label>Ticari Ünvan</label>
-                                <input type="text" class="form-control" th:field="*{ticariUnvan}"/>
+                                <label>Şehir</label>
+                                <select class="form-control" name="sehirId" id="sehir" th:field="*{genelBilgiler.sehir}">
+                                    <option th:each="sehir : ${sehirler}"
+                                            th:value="${sehir.id}"
+                                            th:text="${sehir.IlAdi}">
+                                    </option>
+                                </select>
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>TC Kimlik No</label>
-                                <input id="tcKimlik" type="text" class="form-control" th:field="*{tcKimlikNo}"/>
+                                <label>İlçe</label>
+                                <select class="form-control" name="ilceId" id="ilce" th:field="*{genelBilgiler.ilce}">
+                                    <option th:each="ilce : ${ilceler}"
+                                            th:value="${ilce.id}"
+                                            th:text="${ilce.IlceAdi}">
+                                    </option>
+                                </select>
                             </div>
+                        </div>
 
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label>Belde</label>
+                                <select class="form-control" name="beldeId" id="belde" th:field="*{genelBilgiler.belde}">
+                                    <option th:each="belde : ${beldeler}"
+                                            th:value="${belde.id}"
+                                            th:text="${belde.BeldeAdi}">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                    <label>Cep Telefonu</label>
+                                    <input type="text" class="form-control" th:field="*{genelBilgiler.gsmNo}"/>
+                            </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-6 form-group">
-                                <label>Adı</label>
-                                <input type="text" class="form-control" th:field="*{adi}"/>
+                                <label>İş Telefonu</label>
+                                <input type="text" class="form-control" th:field="*{genelBilgiler.telNo}"/>
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Vergi No</label>
-                                <input type="text" class="form-control" th:field="*{vergiNo}"/>
+                                    <label>Plaka</label>
+                                    <input type="text" class="form-control" th:field="*{genelBilgiler.plaka}"/>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-6 form-group">
-                                <label>Soyadı</label>
-                                <input type="text" class="form-control" th:field="*{soyadi}"/>
+                                <label>Fatura Adresi</label>
+                                <input type="text" class="form-control" th:field="*{genelBilgiler.faturaAdresi}"/>
                             </div>
                             <div class="col-md-6 form-group">
-                                <label>Vergi Dairesi</label>
-                                <input type="text" class="form-control" th:field="*{vergiDairesi}"/>
+                                <label>Çalışma Şekli</label>
+                                <select class="form-control" name="ulkeKodu" th:field="*{genelBilgiler.calismaSekli}" >
+                                    <option th:each="calisma : ${T(com.denizhal.site.model.CalismaSekli).values()}"
+                                            th:value="${calisma}" th:text="${calisma}"></option>
+                                </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Kaydet</button>
-                    </form>
+
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label>Grup</label>
+                                <select class="form-control" name="grupId" id="grup" th:field="*{genelBilgiler.grup}">
+                                    <option th:each="grup : ${gruplar}"
+                                            th:value="${grup.id}"
+                                            th:text="${grup.grupAdi}">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Kesinti Oranı</label>
+                                <input type="text" class="form-control" th:field="*{genelBilgiler.kesintiOrani}"/>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-6 form-group">
+                                <label>Bağkur Keseneği</label>
+                                    <select class="form-control"name="bagkurKesenegi" id="bagkurKesenegi" th:field="*{genelBilgiler.bagkurKesenegi}">
+                                        <option th:value="1" >Evet</option>
+                                        <option th:value="0" >Hayır</option>
+                                    </select>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label>Komisyon Oranı</label>
+                                <input type="text" class="form-control" th:field="*{genelBilgiler.komisyonOrani}"/>
+                            </div>
+                        </div>
+
+
+                        <!-- TODO BURASI YAPILACAK -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 
 <div class="modal-footer">
+    <button type="submit" class="btn btn-primary">Kaydet</button>
     <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+    </form>
 </div>
 
 <script type="text/javascript">

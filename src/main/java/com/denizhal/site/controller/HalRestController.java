@@ -22,7 +22,8 @@ public class HalRestController {
         System.out.println("kullanıcıid : "+userid+" halroleid : "+halroleid);
         //HalUser lastHalUser=halUserService.getLastUserByHalRoleId(halroleid);
         HalUser lastHalUser=halUserService.getLastUserByIdAndHalRoleId(userid,halroleid);
-        if(lastHalUser==null){
+        if(lastHalUser.getMusteriKodu()==0){
+            System.out.println("daha önce mustahsil ya da eklenmemiştir");
             return 1;
         }
         System.out.println(lastHalUser.getMusteriKodu());

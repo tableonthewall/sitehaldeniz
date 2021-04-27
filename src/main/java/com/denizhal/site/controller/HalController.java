@@ -32,7 +32,7 @@ public class HalController {
     @GetMapping
     public String main(Model model, Principal principal){
         model.addAttribute("user",userService.getUserByUserName(principal.getName()));
-        System.out.println(userService.getUserByUserName(principal.getName()).getId());
+        //System.out.println(userService.getUserByUserName(principal.getName()).getId());
         return "hal/main";
     }
 
@@ -47,7 +47,12 @@ public class HalController {
     @GetMapping("/cari/add")
     public String addCari(Model model,Principal principal){
         HalUser halUser=new HalUser();
-        halUser.setGenelBilgiler(new GenelBilgiler());
+        //TODO boş genel bilgiler nesnesi gönderiliyor. Genel bilgiler nesnesini yaratmadan referanssız olarak gönderdiğimizde eleman bize geri dönmüyor.
+        GenelBilgiler genelBilgiler=new GenelBilgiler();
+        //TODO buralar düzeltilecek
+
+        genelBilgiler.setTelNo("054343434");
+        halUser.setGenelBilgiler(genelBilgiler);
         halUser.setUser(userService.getUserByUserName(principal.getName()));
         halUser.setHalRole(new HalRole());
         List<HalRole> halRoles=halRoleService.getHalRoles();
@@ -78,10 +83,23 @@ public class HalController {
 
         return "hal/cari/updateCari";
     }
+
+
+    //DELETE
+    @GetMapping("/{userid}/{cariid}/delete")
+    public String deleteCari(@PathVariable("userid")Integer userid,@PathVariable("cariid") Integer cariid){
+
+        halUserService.deleteHalUser(cariid);
+
+        return "redirect:/hal/cari/"+userid+"/cariList?successDelete";
+    }
     //ADD NEW CARİ
     @PostMapping("/cari/new")
     public String newCari(@ModelAttribute("halUser") HalUser halUser){
         //TODO cari ekleme fonksiyonları yazılacak..
+        System.out.println("genel bilgiler : "+halUser.getGenelBilgiler());
+        System.out.println("genel bilgiler tel: "+halUser.getGenelBilgiler().getTelNo());
+        System.out.println(halUser.getGenelBilgiler().getSifati());
         halUserService.save(halUser);
 //        if(halUser!=null){
 //            System.out.println("nesne geldi");
@@ -89,12 +107,19 @@ public class HalController {
 //        }else{
 //            System.out.println("nesne gelmedi");
 //        }
-        return "redirect:/hal/cari/"+halUser.getUser().getId()+"/cariList";
+        return "redirect:/hal/cari/"+halUser.getUser().getId()+"/cariList?success";
     }
+
     //UPDATE
     @PostMapping("cari/update")
     public String updateCari(@ModelAttribute("halUser") HalUser halUser){
+        HalUser oldHalUser=halUserService.getHalUser(halUser.getId());
+        if(oldHalUser.equals(halUser)){
+            return "redirect:/hal/cari/"+halUser.getUser().getId()+"/cariList";
+        }else{
+            System.out.println("Güncellenme olmuştur.");
+        }
         halUserService.save(halUser);
-        return "redirect:/hal/cari/"+halUser.getUser().getId()+"/cariList";
+        return "redirect:/hal/cari/"+halUser.getUser().getId()+"/cariList?successUpdate";
     }
 }

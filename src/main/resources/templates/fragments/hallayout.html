@@ -107,6 +107,7 @@
                 <div class="sidebar-heading" sec:authentication="principal.username"> </div>
                 <div class="list-group list-group-flush">
                     <a th:href="@{/user}" class="list-group-item list-group-item-action bg-light">Kullanıcı Paneli</a>
+                    <a th:href="@{/fatura}" class="list-group-item list-group-item-action bg-light">Fatura İşlemleri</a>
                     <a th:href="@{'/hal/cari/' + ${user.id} + '/cariList'}" class="list-group-item list-group-item-action bg-light">Cari İşlemleri</a>
                     <!--
                     <a th:href="@{/user/download}" class="list-group-item list-group-item-action bg-light">İndir</a>
@@ -220,6 +221,15 @@
             e.preventDefault();
             $("#updateModal").modal("show").find(".modal-content").load($(this).attr('href'));
         });
+    });
+</script>
+
+<script type="text/javascript">
+    $(".table #deleteButton").on('click',function(event) {
+        event.preventDefault();
+        var href=$(this).attr('href');
+        $('#deleteModal #delRef').attr('href',href);
+        $('#deleteModal').modal();
     });
 </script>
 

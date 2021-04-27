@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/hallayout :: layout (~{::body},'fatura')}">
+<head>
+    <meta charset="UTF-8">
+    <title>Deniz Hal Yazılımı</title>
+
+</head>
+<body>
+
+<div id="page-content-wrapper">
+    <div class="card bg-light mb-3">
+        <div class="card-header">
+            <div class="row" style="margin-top:1em;">
+                <div class="col-md-10">
+                    <h1 class="card-title" th:text="'Fatura İşlemleri'">Fatura İşlemleri</h1>
+                </div>
+            </div>
+
+        </div>
+        <div class="row text-center">
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <a href="#" th:href="@{'/fatura/'+${user.id}+'/satis'}" title=""><img class="card-img-top" th:src="@{/images/fatura_1.png}" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">Satış Faturası</h4>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" th:href="@{'/fatura/'+${user.id}+'/satis'}" class="btn btn-primary">Fatura İşlemleri</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <a href="#" th:href="@{'/fatura/'+${user.id}+'/mustahsil'}" title=""><img class="card-img-top" th:src="@{/images/fatura_3.png}" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">Müstahsil Faturası</h4>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" th:href="@{'/fatura/'+${user.id}+'/mustahsil'}" class="btn btn-primary">Fatura İşlemleri</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <a href="#" th:href="@{'/fatura/'+${user.id}+'/masraf'}" title=""><img class="card-img-top" th:src="@{/images/fatura_2.png}" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">Masraf Faturası</h4>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" th:href="@{'/fatura/'+${user.id}+'/masraf'}" class="btn btn-primary">Masraf İşlemleri</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card h-100">
+                    <a href="#" th:href="@{'/fatura/'+${user.id}+'/masrafekle'}" title=""><img class="card-img-top" th:src="@{/images/fatura_4.png}" alt=""></a>
+                    <div class="card-body">
+                        <h4 class="card-title">Masraf Tanımı</h4>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" th:href="@{'/fatura/'+${user.id}+'/masrafekle'}" class="btn btn-primary">Tanım Ekle</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

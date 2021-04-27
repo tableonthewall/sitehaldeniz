@@ -96,4 +96,11 @@ public class HalUserServiceImpl implements HalUserService {
         halUserRepository.save(halUser);
     }
 
+    @Override
+    public void deleteHalUser(Integer id) {
+        halUserRepository.deleteById(id);
+    }
+
+
+
 }

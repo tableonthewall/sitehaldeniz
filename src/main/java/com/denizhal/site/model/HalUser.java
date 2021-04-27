@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "haluser")
@@ -42,7 +43,7 @@ public class HalUser {
     private String vergiDairesi;
 
     //OnetoOne relation genelBilgiler sınıfına ait id'yi kullanıyoruz.
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name="genelBilgiler_id",referencedColumnName = "id")
     private GenelBilgiler genelBilgiler;
 
@@ -143,5 +144,28 @@ public class HalUser {
 
     public void setHalRole(HalRole halRole) {
         this.halRole = halRole;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HalUser halUser = (HalUser) o;
+        return musteriKodu == halUser.musteriKodu &&
+                id.equals(halUser.id) &&
+                ticariUnvan.equals(halUser.ticariUnvan) &&
+                adi.equals(halUser.adi) &&
+                soyadi.equals(halUser.soyadi) &&
+                tcKimlikNo.equals(halUser.tcKimlikNo) &&
+                vergiNo.equals(halUser.vergiNo) &&
+                vergiDairesi.equals(halUser.vergiDairesi) &&
+                Objects.equals(genelBilgiler, halUser.genelBilgiler) &&
+                Objects.equals(user, halUser.user) &&
+                Objects.equals(halRole, halUser.halRole);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, ticariUnvan, musteriKodu, adi, soyadi, tcKimlikNo, vergiNo, vergiDairesi, genelBilgiler, user, halRole);
     }
 }

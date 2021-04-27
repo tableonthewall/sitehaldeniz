@@ -16,4 +16,5 @@ public interface HalUserService {
     HalUser getHalUserByUserIdAndMusteriKoduAndHalRoleId(Integer userId,Integer musteriKodu,Integer halRoleId);
     boolean chechUniqueTcAndUser(Integer userId,String tc);
     void save(HalUser halUser);
+    void deleteHalUser(Integer id);
 }
