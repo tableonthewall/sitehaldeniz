@@ -1,7 +1,6 @@
 package com.denizhal.site.dto;
 
 import javax.xml.bind.annotation.*;
-import java.util.ArrayList;
 
 @XmlRootElement(name="Project_Update")
 @XmlType(propOrder = {"DENIZHAL","ASESHK"})
@@ -17,21 +16,19 @@ public class ProjectUpdate {
     public ProjectUpdate() {
     }
 
-    public com.denizhal.site.dto.DENIZHAL getDENIZHAL() {
+    public DENIZHAL getDENIZHAL() {
         return DENIZHAL;
     }
 
-    public void setDENIZHAL(com.denizhal.site.dto.DENIZHAL DENIZHAL) {
+    public void setDENIZHAL(DENIZHAL DENIZHAL) {
         this.DENIZHAL = DENIZHAL;
     }
 
-    public com.denizhal.site.dto.ASESHK getASESHK() {
+    public ASESHK getASESHK() {
         return ASESHK;
     }
 
-    public void setASESHK(com.denizhal.site.dto.ASESHK ASESHK) {
+    public void setASESHK(ASESHK ASESHK) {
         this.ASESHK = ASESHK;
     }
-
-    // getter and setter here
 }
