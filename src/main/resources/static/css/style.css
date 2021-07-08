@@ -195,6 +195,7 @@ h6 {
 
 #intro {
   width: 100%;
+  display:flex;
   position: relative;
   background: url('../images/intro-bg.png') center bottom no-repeat;
   background-size: cover;
@@ -202,23 +203,49 @@ h6 {
 }
 
 #intro .intro-img {
-  width: 60%;
+  width: 65%;
   float: right;
 }
 
 #intro .intro-info {
-  width: 40%;
+  width: 35%;
   float: left;
 }
 
 #intro .intro-info h2 {
   color: #fff;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
+  margin-right : 5px;
+  margin-left: 5px;
   font-size: 48px;
+  font-weight: 700;
+}
+#intro .intro-info h3 {
+  color: #fff;
+  margin-bottom: 20px;
+  margin-right : 5px;
+  margin-left: 5px;
+  font-size: 24px;
+  font-weight: 700;
+}
+#intro .intro-info h5 {
+  color: #fff;
+  margin-bottom: 20px;
+  margin-right : 5px;
+  margin-left: 5px;
+  font-size: 18px;
   font-weight: 700;
 }
 
 #intro .intro-info h2 span {
+  color: #74b5fc;
+  text-decoration: underline;
+}
+#intro .intro-info h3 span {
+  color: #74b5fc;
+  text-decoration: underline;
+}
+#intro .intro-info h5 span {
   color: #74b5fc;
   text-decoration: underline;
 }
