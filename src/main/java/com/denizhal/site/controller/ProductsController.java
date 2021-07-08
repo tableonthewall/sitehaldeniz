@@ -4,14 +4,18 @@ import com.denizhal.site.model.Product;
 import com.denizhal.site.service.FileService;
 import com.denizhal.site.service.ProductsService;
 import com.denizhal.site.service.ProposeService;
+import com.denizhal.site.xmlConnetion.GetVersion;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.xml.bind.JAXBException;
+import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/products")
@@ -19,16 +23,37 @@ public class ProductsController {
     private final ProductsService productsService;
     private final FileService fileService;
     private final ProposeService proposeService;
+    private final GetVersion getVersion;
 
     public ProductsController(ProductsService productsService, FileService fileService, ProposeService proposeService) {
         this.productsService = productsService;
         this.fileService = fileService;
         this.proposeService = proposeService;
+        GetVersion getVersion=null;
+        try{
+            getVersion=new GetVersion();
+        }catch (JAXBException j){
+            System.out.println(j.getMessage());
+        }catch (MalformedURLException m){
+            System.out.println(m.getMessage());
+        }
+        this.getVersion=getVersion;
     }
 
+    /**
+     * listProducts
+     * Request mapping de belirtilen yolla bu method çalışıyor.
+     * ürünler bağlantısına tıklandığında geriye cevap olarak ürünlerin listesi gönderiliyor.
+     * @param model
+     * @return
+     */
     @GetMapping
     public String listProducts(Model model){
-        model.addAttribute("products",productsService.getProducts());
+        List<Product> productList=productsService.getProducts();
+        for(int i=0;i<productList.size();i++){
+            productList.get(i).setVersion(getVersion.getVersion());
+        }
+        model.addAttribute("products",productList);
         return "products/listProducts";
     }
 
